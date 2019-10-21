@@ -83,10 +83,10 @@ const useStyles = makeStyles(theme => ({
               variant="outlined"
               margin="normal"
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <Field component={TextField}
@@ -135,21 +135,19 @@ const useStyles = makeStyles(theme => ({
 };
 
 const FormikLogin = withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ username, password }) {
     return {
-     
-      email: email || "",
+      username: username || "",
       password: password || "",
-      
     };
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string().required("Email required"),
+    username: Yup.string().required("Username required"),
     password: Yup.string().required("Please enter password")
   }),
   //You can use this to see the values
   handleSubmit(values, {resetForm, ...rest} ) {
-    rest.props.login();
+    rest.props.login(values);
   }
 })(Login);
 console.log("This is the HOC", FormikLogin);

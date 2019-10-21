@@ -28,6 +28,13 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
+                currentUser: action.payload
+            }
+        case LOGIN_FAILURE:
+            return {
+                ...state,
+                err: action.payload,
+                load: false
             }
         case REGISTER_START:
             return {
@@ -40,7 +47,7 @@ export const userReducer = (state = initialState, action) => {
             localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
-                currentUser: action.payload.username,
+                currentUser: action.payload.user,
                 loading: false
             }
         case REGISTER_FAILURE:
