@@ -14,24 +14,21 @@ import { Formik } from "formik";
 import SignUp from "./component/SignUp";
 import Login from "./component/Login";
 import ForgetPassword from "./component/ForgetPassword";
-import Dashboard from "./component/Dashboard"
+import Dashboard from "./component/Dashboard/Dashboard"
+import { PrivateRoute } from "./component/PrivateRoute"
 
 function App() {
   return (
     <>
-   <HeaderLayout/>
-   {/* <Content/> */}
-   {/* <Route exact path="/" component={WelcomePage} /> */}
-   <Route  exact path="/" component={Login} />
-   <Route exact path="/SignUp" render={props => 
-    <Provider store={store}>
-     <SignUp {...props} />
-    </Provider> 
-    }/>
-   <Route exact path="/SignUp" component={SignUp} />
-   <Route exact path="/ForgetPassword" component={ForgetPassword} />
-    
-   {/* <SignUp/> */}
+      <HeaderLayout/>
+      <Route  exact path="/" component={Login} />
+      <Route exact path="/SignUp" render={props => 
+        <Provider store={store}>
+        <SignUp {...props} />
+        </Provider> 
+        }/>
+      <PrivateRoute path="/dashboard" component={Dashboard} />
+      <Route exact path="/ForgetPassword" component={ForgetPassword} />
    </>
   );
 }
