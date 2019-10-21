@@ -15,6 +15,9 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import axios from "axios";
+import { connect } from "react-redux"
+
+import { login } from "../store/actions"
 
 
 
@@ -145,15 +148,18 @@ const FormikLogin = withFormik({
     password: Yup.string().required("Please enter password")
   }),
   //You can use this to see the values
-  handleSubmit(values) {
-    axios
-      .post("https://reqres.in/api/users/", values)
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => console.log(err.res));
+  handleSubmit(values, {resetForm, ...rest} ) {
+    rest.props.login();
   }
 })(Login);
 console.log("This is the HOC", FormikLogin);
-export default FormikLogin;
+
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    state: state
+  }
+}
+
+export default connect(mapStateToProps, {login})(FormikLogin);
 
