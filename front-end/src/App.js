@@ -14,6 +14,7 @@ import { Formik } from "formik";
 import SignUp from "./component/SignUp";
 import Login from "./component/Login";
 import ForgetPassword from "./component/ForgetPassword";
+import Dashboard from "./component/Dashboard"
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
      <SignUp {...props} />
     </Provider> 
     }/>
+   <Route exact path="/SignUp" component={SignUp} />
    <Route exact path="/ForgetPassword" component={ForgetPassword} />
     
    {/* <SignUp/> */}
