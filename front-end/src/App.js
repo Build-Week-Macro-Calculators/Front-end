@@ -9,6 +9,7 @@ import { Formik } from "formik";
 import SignUp from "./component/SignUp";
 import Login from "./component/Login";
 import ForgetPassword from "./component/ForgetPassword";
+import Dashboard from "./component/Dashboard"
 
 
 
@@ -21,6 +22,7 @@ function App() {
    {/* <Content/> */}
    {/* <Route exact path="/" component={WelcomePage} /> */}
    <Route  exact path="/" component={Login} />
+   <Route  exact path="/Dashboard" component={Dashboard} />
    <Route exact path="/SignUp" component={SignUp} />
    <Route exact path="/ForgetPassword" component={ForgetPassword} />
     
