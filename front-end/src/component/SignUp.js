@@ -16,7 +16,6 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
-import axios from "axios";
 import {
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
@@ -111,22 +110,10 @@ const SignUp = ({ values }) => {
               margin="normal"
               fullWidth
               id="name"
-              label="Full Name"
-              name="fullName"
+              label="Username"
+              name="username"
               autoFocus
             />
-
-            <Field
-              component={TextField}
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-            />
-
             <Field
               component={TextField}
               variant="outlined"
@@ -135,18 +122,6 @@ const SignUp = ({ values }) => {
               fullWidth
               name="password"
               label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <Field
-              component={TextField}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="confirmPassword"
-              label="Confirm Password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -170,24 +145,24 @@ const SignUp = ({ values }) => {
                 value={values.weightRange}
                 // onChange={handleChange("weightRange")}
               >
-                <MenuItem value="5'7">5'7</MenuItem>
-                <MenuItem value="5'8">5'8</MenuItem>
+                <MenuItem value={48}>4'0"</MenuItem>
+                <MenuItem value={49}>4'1"</MenuItem>
               </Field>
               <Field
                 component={TextField}
                 fullWidth
                 select
-                name="days"
+                name="exerciseFrequency"
                 label="Number of days you Excercise"
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
                 // onChange={handleChange("weightRange")}
               >
-                <MenuItem value="0">0 day</MenuItem>
-                <MenuItem value="2">1-2 days</MenuItem>
-                <MenuItem value="3">3-4 days</MenuItem>
-                <MenuItem value="6">5-6 days</MenuItem>
-                <MenuItem value="7">7 days</MenuItem>
+                <MenuItem value={0}>0 days</MenuItem>
+                <MenuItem value={1.5}>1-2 days</MenuItem>
+                <MenuItem value={3.5}>3-4 days</MenuItem>
+                <MenuItem value={5.5}>5-6 days</MenuItem>
+                <MenuItem value={7}>7 days</MenuItem>
               </Field>
               <Field
                 component={TextField}
@@ -199,12 +174,12 @@ const SignUp = ({ values }) => {
                 value={values.weightRange}
                 // onChange={handleChange("weightRange")}
               >
-                <MenuItem value="20">Aggressive Weight Loss</MenuItem>
-                <MenuItem value="15">Moderate Weight Loss</MenuItem>
-                <MenuItem value="10">Deficit Weight Loss</MenuItem>
-                <MenuItem value="0">Maintain Weight</MenuItem>
-                <MenuItem value="10">Moderate Weight Gain</MenuItem>
-                <MenuItem value="15">Aggressive Weight Gain</MenuItem>
+                <MenuItem value={-.20}>Aggressive Weight Loss</MenuItem>
+                <MenuItem value={-.15}>Moderate Weight Loss</MenuItem>
+                <MenuItem value={-.10}>Deficit Weight Loss</MenuItem>
+                <MenuItem value={0}>Maintain Weight</MenuItem>
+                <MenuItem value={.10}>Moderate Weight Gain</MenuItem>
+                <MenuItem value={.15}>Aggressive Weight Gain</MenuItem>
               </Field>
               {/* nd their goal (drop down list: aggressive weight loss (20% deficit), moderate weight loss (15% deficit), weight loss (10% deficit), maintain weight, moderate weight gain (10% surplus), aggressive weight gain (15% deficit). */}
             </Grid>
@@ -224,19 +199,30 @@ const SignUp = ({ values }) => {
                     "aria-label": "change date"
                   }}
                 /> */}
+                <Field component={ TextField}
+                  id="date"
+                  label="Age"
+                  type="number"
+                  name="age"
+                  fullWidth
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
                 <Field
                   component={TextField}
                   fullWidth
                   select
-                  name="gender"
+                  name="male"
                   label="Gender"
                   placeholder="Male/Female"
                   className={clsx(classes.margin, classes.textField)}
                   value={values.weightRange}
                   // onChange={handleChange("weightRange")}
                 >
-                  <MenuItem value="M">Male</MenuItem>
-                  <MenuItem value="F">Female</MenuItem>
+                  <MenuItem value={true}>Male</MenuItem>
+                  <MenuItem value={false}>Female</MenuItem>
                 </Field>
               </Grid>
             </MuiPickersUtilsProvider>
@@ -267,35 +253,32 @@ const SignUp = ({ values }) => {
   );
 };
 const FormikSignUp = withFormik({
-  mapPropsToValues({ fullName, email,days,goal,confirmPassword, password, weight, height, dob, gender }) {
+  mapPropsToValues({ username, exerciseFrequency, goal, password, weight, height, age, male }) {
     return {
-      fullName: fullName || "",
-      email: email || "",
+      username: username || "",
       password: password || "",
-      confirmPassword:confirmPassword||"",
       weight: weight || "",
       height: height || "",
+      age: age || "",
       goal: goal || "",
-      days: days || "",
-      gender: gender || ""
+      exerciseFrequency: exerciseFrequency || "",
+      male: male || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    fullName: Yup.string().required("You must put a Full Name"),
-    email: Yup.string().required("Please enter Valid email address"),
+    username: Yup.string().required("You must put a username"),
     weight: Yup.string().required(),
     height: Yup.string().required(),
-    days: Yup.string().required(),
+    exerciseFrequency: Yup.string().required(),
     goal: Yup.string().required(),
-    gender: Yup.string().required(),
+    male: Yup.string().required(),
     password: Yup.string().required('Password is required'),
-    confirmPassword: Yup.string()
-     .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    age: Yup.string().required("Date of Birth is required"),
   }),
   //You can use this to see the values
   handleSubmit(values, {resetForm, ...rest}) {
-    rest.props.register();
+    rest.props.register(values);
   }
 })(SignUp);
 console.log("This is the HOC", FormikSignUp);

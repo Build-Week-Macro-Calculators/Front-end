@@ -30,12 +30,24 @@ export const userReducer = (state = initialState, action) => {
                 loading: false,
             }
         case REGISTER_START:
-            console.log('registering!')
             return {
                 ...state,
                 loading: true,
                 error: null,
                 currentUser: null
+            }
+        case REGISTER_SUCCESS:
+            localStorage.setItem('token', action.payload.token)
+            return {
+                ...state,
+                currentUser: action.payload.username,
+                loading: false
+            }
+        case REGISTER_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
             }
         default:
             return state;
