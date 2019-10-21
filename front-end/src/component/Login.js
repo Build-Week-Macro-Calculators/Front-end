@@ -145,9 +145,11 @@ const FormikLogin = withFormik({
     username: Yup.string().required("Username required"),
     password: Yup.string().required("Please enter password")
   }),
+
   //You can use this to see the values
   handleSubmit(values, {resetForm, ...rest} ) {
     rest.props.login(values);
+    rest.props.history.push("/dashboard")
   }
 })(Login);
 console.log("This is the HOC", FormikLogin);

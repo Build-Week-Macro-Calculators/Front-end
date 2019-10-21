@@ -276,9 +276,11 @@ const FormikSignUp = withFormik({
     password: Yup.string().required('Password is required'),
     age: Yup.string().required("Date of Birth is required"),
   }),
+
   //You can use this to see the values
   handleSubmit(values, {resetForm, ...rest}) {
     rest.props.register(values);
+    rest.props.history.push("/dashboard")
   }
 })(SignUp);
 console.log("This is the HOC", FormikSignUp);
