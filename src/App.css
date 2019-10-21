@@ -1,0 +1,184 @@
+App {
+  height: 100vh;
+  display: flex;
+  color: white;
+}
+
+.App__Aside {
+  width: 50%;
+
+  height: 100vh;
+  background: linear-gradient(rgba(244, 132, 95, 0.45), 
+  rgba(247, 178, 103, 0.45)), url("https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2200&q=80");
+  background-size: 100vh;
+}
+.seperate {
+  height: 10px;
+  border-bottom: 10px solid #f4845f;
+  margin-bottom: 20px;
+  width: 85%;
+}
+.flex-row {
+  display: flex;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.gender {
+  margin-right: 10px;
+}
+.App__Form {
+  width: 50%;
+  background-color: #5c5c5c;
+  padding: 25px 40px;
+  overflow: auto;
+  min-width: 600px;
+}
+.App {
+  display: flex;
+}
+
+.PageSwitcher {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+}
+
+.PageSwitcher__Item {
+  background-color: #f4845f;
+  color: white;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: .9em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.PageSwitcher__Item--Active {
+  background-color: #f79d65;
+  color: white;
+}
+
+.PageSwitcher__Item:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.PageSwitcher__Item:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.FormCenter {
+  margin-bottom: 100px;
+}
+
+.FormTitle {
+  color: white;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+.FormTitle__Link {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.7em;
+  margin: 0 10px;
+  padding-bottom: 5px;
+}
+
+.FormTitle__Link:first-child {
+  margin-left: 0;
+}
+
+.FormTitle__Link--Active {
+  color: white;
+  border-bottom: 1px solid #f4845f;
+}
+
+.FormField {
+  margin-bottom: 40px;
+}
+
+.FormField__Label {
+  display: block;
+  text-transform: uppercase;
+  font-size: .9em;
+  color: white;
+}
+.FormField__Input {
+  width: 85%;
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  border-bottom: 1px solid #f4845f;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+#heightSelect {
+  width: 70px;
+  background-color: #5c5c5c;
+}
+#exerciseDaysSelect {
+  width: 160px;
+  background-color: #5c5c5c;
+}
+#healthGoal {
+  width: 210px;
+  background-color: #5c5c5c;
+}
+
+.FormField__Input::placeholder {
+  color: white;
+}
+.centered {
+  margin-left: 20px;
+}
+
+.FormField__Button {
+  background-color: #f4845f;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  padding: 15px 70px;
+  font-size: .8em;
+  font-weight: 500;
+}
+.FormField__Button:hover {
+  background-color: #f79d65;
+}
+
+.FormField__Link {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1.5px solid #f4845f;
+  padding-bottom: 5px;
+}
+
+.FormField__CheckboxLabel {
+  color: white;
+  font-size: .9em;
+}
+
+.FormField__Checkbox {
+  position: relative;
+  top: 1.5px;
+  margin-top: 30px;
+}
+
+.FormField__TermsLink {
+  color: white;
+  border-bottom: 1px solid #f4845f;
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  margin-left: 5px;
+}
