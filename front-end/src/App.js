@@ -18,6 +18,7 @@ import Dashboard from "./component/Dashboard/Dashboard"
 import { PrivateRoute } from "./component/PrivateRoute"
 
 function App() {
+  // Test, can you see this?
   return (
     <>
       <HeaderLayout/>

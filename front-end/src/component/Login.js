@@ -153,6 +153,7 @@ const FormikLogin = withFormik({
     rest.props.history.push("/dashboard")
   }
 })(Login);
+
 console.log("This is the HOC", FormikLogin);
 
 const mapStateToProps = state => {
