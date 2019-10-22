@@ -119,8 +119,10 @@ const useStyles = makeStyles(theme => ({
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/SignUp" variant="body2">
+              <Link to="/SignUp" variant="body2">
                   {"Don't have an account? Sign Up"}
+                </Link> <Link to="/MealAndSnack" variant="body2">
+                  {"Meal and Snack"}
                 </Link>
               </Grid>
             </Grid>

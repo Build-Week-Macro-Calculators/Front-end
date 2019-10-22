@@ -16,9 +16,9 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
-import {
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
+ 
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+
 import { connect } from "react-redux"
 
 import { register } from "../store/actions"
@@ -42,7 +42,8 @@ const useStyles = makeStyles(theme => ({
     height: "100vh"
   },
   image: {
-    backgroundImage: 'url(https://images.pexels.com/photos/1268478/pexels-photo-1268478.jpeg?cs=srgb&dl=antioxidant-berries-beverage-1268478.jpg&fm=jpg)',
+    backgroundImage:
+      "url(https://images.pexels.com/photos/1268478/pexels-photo-1268478.jpeg?cs=srgb&dl=antioxidant-berries-beverage-1268478.jpg&fm=jpg)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"
@@ -183,6 +184,7 @@ const SignUp = ({ values }) => {
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
               >
+
                 <MenuItem value={-.20}>Aggressive Weight Loss</MenuItem>
                 <MenuItem value={-.15}>Moderate Weight Loss</MenuItem>
                 <MenuItem value={-.10}>Deficit Weight Loss</MenuItem>
@@ -212,6 +214,7 @@ const SignUp = ({ values }) => {
                   className={clsx(classes.margin, classes.textField)}
                   value={values.weightRange}
                 >
+
                   <MenuItem value={true}>Male</MenuItem>
                   <MenuItem value={false}>Female</MenuItem>
                 </Field>
@@ -244,6 +247,7 @@ const SignUp = ({ values }) => {
   );
 };
 const FormikSignUp = withFormik({
+
   mapPropsToValues({ username, exerciseFrequency, goal, password, weight, height, age, male }) {
     return {
       username: username || "",
@@ -269,6 +273,7 @@ const FormikSignUp = withFormik({
   }),
 
   //You can use this to see the values
+
   handleSubmit(values, {resetForm, ...rest}) {
     rest.props.register(values);
   }

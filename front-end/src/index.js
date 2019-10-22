@@ -11,7 +11,6 @@ import { userReducer } from "./store/reducers"
 import history from "./history"
 
 export const store = createStore(userReducer, applyMiddleware(thunk))
-
 ReactDOM.render(
 <Provider store={store}>
     <Router history={history}>
