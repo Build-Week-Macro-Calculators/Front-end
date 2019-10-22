@@ -5,8 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { connect } from "react-redux"
-
-import history from "../history"
+import "./HeaderLayout.css";
+import history from "../../history"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,7 +32,7 @@ const HeaderLayout = props => {
     return(
       <div className="header">
       <div className={classes.root}>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className="navStyle">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
               Macro Calculator

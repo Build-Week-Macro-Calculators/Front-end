@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.scss"
 import { connect } from "react-redux"
-
-import HeaderLayout from "../HeaderLayout"
 import { fetchProfile, editGoals } from "../../store/actions"
+import HeaderLayout from "../HeaderLayout/HeaderLayout"
 
 const Dashboard = ({ 
     currentUser,
