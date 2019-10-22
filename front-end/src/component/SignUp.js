@@ -16,10 +16,13 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
-import axios from "axios";
 import {
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
+import { connect } from "react-redux"
+
+import { register } from "../store/actions"
+
 
 function Copyright() {
   return (
@@ -65,29 +68,6 @@ const useStyles = makeStyles(theme => ({
 
 const SignUp = ({ values }) => {
   const classes = useStyles();
-  const [valuess, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false
-  });
-  const handleChange = prop => event => {
-    setValues({ ...valuess, [prop]: event.target.value });
-  };
-
-  // const handleClickShowPassword = () => {
-  //   setValues({ ...values, showPassword: !values.showPassword });
-  // };
-
-  // const handleMouseDownPassword = event => {
-  //   event.preventDefault();
-  // };
-  // const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-  // const handleDateChange = date => {
-  //   setSelectedDate(date);
-  // };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -107,22 +87,10 @@ const SignUp = ({ values }) => {
               margin="normal"
               fullWidth
               id="name"
-              label="Full Name"
-              name="fullName"
+              label="Username"
+              name="username"
               autoFocus
             />
-
-            <Field
-              component={TextField}
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-            />
-
             <Field
               component={TextField}
               variant="outlined"
@@ -131,18 +99,6 @@ const SignUp = ({ values }) => {
               fullWidth
               name="password"
               label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <Field
-              component={TextField}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="confirmPassword"
-              label="Confirm Password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -164,28 +120,59 @@ const SignUp = ({ values }) => {
                 label="Height"
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
-                onChange={handleChange("weightRange")}
               >
-                <MenuItem value="5'7">5'7</MenuItem>
-                <MenuItem value="5'8">5'8</MenuItem>
-                ))}
+                <MenuItem value={48}>4' 0"</MenuItem>
+                <MenuItem value={49}>4' 1"</MenuItem>
+                <MenuItem value={50}>4' 2"</MenuItem>
+                <MenuItem value={51}>4' 3"</MenuItem>
+                <MenuItem value={52}>4' 4"</MenuItem>
+                <MenuItem value={53}>4' 5"</MenuItem>
+                <MenuItem value={54}>4' 6"</MenuItem>
+                <MenuItem value={55}>4' 7"</MenuItem>
+                <MenuItem value={56}>4' 8"</MenuItem>
+                <MenuItem value={57}>4' 9"</MenuItem>
+                <MenuItem value={58}>4' 10"</MenuItem>
+                <MenuItem value={59}>4' 11"</MenuItem>
+                <MenuItem value={60}>5' 0"</MenuItem>
+                <MenuItem value={61}>5' 1"</MenuItem>
+                <MenuItem value={62}>5' 2"</MenuItem>
+                <MenuItem value={63}>5' 3"</MenuItem>
+                <MenuItem value={64}>5' 4"</MenuItem>
+                <MenuItem value={65}>5' 5"</MenuItem>
+                <MenuItem value={66}>5' 6"</MenuItem>
+                <MenuItem value={67}>5' 7"</MenuItem>
+                <MenuItem value={68}>5' 8"</MenuItem>
+                <MenuItem value={69}>5' 9"</MenuItem>
+                <MenuItem value={70}>5' 10"</MenuItem>
+                <MenuItem value={71}>5' 11"</MenuItem>
+                <MenuItem value={72}>6' 0"</MenuItem>
+                <MenuItem value={73}>6' 1"</MenuItem>
+                <MenuItem value={74}>6' 2"</MenuItem>
+                <MenuItem value={75}>6' 3"</MenuItem>
+                <MenuItem value={76}>6' 4"</MenuItem>
+                <MenuItem value={77}>6' 5"</MenuItem>
+                <MenuItem value={78}>6' 6"</MenuItem>
+                <MenuItem value={79}>6' 7"</MenuItem>
+                <MenuItem value={80}>6' 8"</MenuItem>
+                <MenuItem value={81}>6' 9"</MenuItem>
+                <MenuItem value={82}>6' 10"</MenuItem>
+                <MenuItem value={83}>6' 11"</MenuItem>
+                <MenuItem value={84}>7' 0"</MenuItem>
               </Field>
               <Field
                 component={TextField}
                 fullWidth
                 select
-                name="days"
-                label="Number of days you Excercise"
+                name="exerciseFrequency"
+                label="Activity Level"
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
-                onChange={handleChange("weightRange")}
               >
-                <MenuItem value="0">0 day</MenuItem>
-                <MenuItem value="2">1-2 days</MenuItem>
-                <MenuItem value="3">3-4 days</MenuItem>
-                <MenuItem value="6">5-6 days</MenuItem>
-                <MenuItem value="7">7 days</MenuItem>
-                ))}
+                <MenuItem value={1.2}>0 days</MenuItem>
+                <MenuItem value={1.375}>1-2 days</MenuItem>
+                <MenuItem value={1.55}>3-4 days</MenuItem>
+                <MenuItem value={1.725}>5-6 days</MenuItem>
+                <MenuItem value={1.9}>7 days</MenuItem>
               </Field>
               <Field
                 component={TextField}
@@ -195,60 +182,38 @@ const SignUp = ({ values }) => {
                 label="Goal"
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
-                onChange={handleChange("weightRange")}
               >
-                <MenuItem value="20">Aggressive Weight Loss</MenuItem>
-                <MenuItem value="15">Moderate Weight Loss</MenuItem>
-                <MenuItem value="10">Deficit Weight Loss</MenuItem>
-                <MenuItem value="0">Maintain Weight</MenuItem>
-                <MenuItem value="10">Moderate Weight Gain</MenuItem>
-                <MenuItem value="15">Aggressive Weight Gain</MenuItem>
-                ))}
+                <MenuItem value={-.20}>Aggressive Weight Loss</MenuItem>
+                <MenuItem value={-.15}>Moderate Weight Loss</MenuItem>
+                <MenuItem value={-.10}>Deficit Weight Loss</MenuItem>
+                <MenuItem value={0}>Maintain Weight</MenuItem>
+                <MenuItem value={.10}>Moderate Weight Gain</MenuItem>
+                <MenuItem value={.15}>Aggressive Weight Gain</MenuItem>
               </Field>
-              {/* nd their goal (drop down list: aggressive weight loss (20% deficit), moderate weight loss (15% deficit), weight loss (10% deficit), maintain weight, moderate weight gain (10% surplus), aggressive weight gain (15% deficit). */}
             </Grid>
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify={"space-between"}>
-                {/* <KeyboardDatePicker
-                  margin="normal"
-                  fullWidth
-                  name="dob"
-                  id="date-picker-dialog"
-                  label="Date of Birth"
-                  format="dd/MM/yyyy"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date"
-                  }}
-                /> */}
                 <Field component={ TextField}
                   id="date"
-                  label="Birthday"
-                  type="date"
-                  name="dob"
+                  label="Age"
+                  type="number"
+                  name="age"
                   fullWidth
-                  defaultValue="2017-05-24"
                   className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
                 />
                 <Field
                   component={TextField}
                   fullWidth
                   select
-                  name="gender"
+                  name="male"
                   label="Gender"
                   placeholder="Male/Female"
                   className={clsx(classes.margin, classes.textField)}
                   value={values.weightRange}
-                  onChange={handleChange("weightRange")}
                 >
-                  <MenuItem value="M">Male</MenuItem>
-                  <MenuItem value="F">Female</MenuItem>
-                  ))}
+                  <MenuItem value={true}>Male</MenuItem>
+                  <MenuItem value={false}>Female</MenuItem>
                 </Field>
               </Grid>
             </MuiPickersUtilsProvider>
@@ -279,44 +244,42 @@ const SignUp = ({ values }) => {
   );
 };
 const FormikSignUp = withFormik({
-  mapPropsToValues({ fullName, email,days,goal,confirmPassword, password, weight, height, dob, gender }) {
+  mapPropsToValues({ username, exerciseFrequency, goal, password, weight, height, age, male }) {
     return {
-      fullName: fullName || "",
-      email: email || "",
+      username: username || "",
       password: password || "",
-      confirmPassword:confirmPassword||"",
       weight: weight || "",
       height: height || "",
-      dob: dob || "",
+      age: age || "",
       goal: goal || "",
-      days: days || "",
-      gender: gender || ""
+      exerciseFrequency: exerciseFrequency || "",
+      male: male || ""
     };
   },
-  validationSchema: Yup.object().shape({
-    fullName: Yup.string().required("You must put a Full Name"),
-    email: Yup.string().required("Please enter Valid email address"),
-    weight: Yup.string().required(),
-    height: Yup.string().required(),
-    days: Yup.string().required(),
-    goal: Yup.string().required(),
-    gender: Yup.string().required(),
-    password: Yup.string().required('Password is required'),
-    dob: Yup.string().required("Date of Birth is required"),
-    confirmPassword: Yup.string()
-     .oneOf([Yup.ref('password'), null], 'Passwords must match')
 
+  validationSchema: Yup.object().shape({
+    username: Yup.string().required("Username is required"),
+    weight: Yup.string().required("Weight is required"),
+    height: Yup.string().required("Height is required"),
+    exerciseFrequency: Yup.string().required("Choose an activity level"),
+    goal: Yup.string().required("Goal is required"),
+    male: Yup.string().required("Gender is required"),
+    password: Yup.string().required('Password is required'),
+    age: Yup.string().required("Age is required"),
   }),
+
   //You can use this to see the values
-  handleSubmit(values) {
-    axios
-      // .post("https://reqres.in/api/users/", values)
-      .post("https://buildweek-macrocalc.herokuapp.com/createnewuser", values)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.log(err.res));
+  handleSubmit(values, {resetForm, ...rest}) {
+    rest.props.register(values);
   }
 })(SignUp);
 console.log("This is the HOC", FormikSignUp);
-export default FormikSignUp;
+
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    state: state
+  }
+}
+
+export default connect(mapStateToProps, {register})(FormikSignUp);
