@@ -2,8 +2,6 @@ import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -136,6 +134,5 @@ const FormikForgetPassword = withFormik({
       .catch(err => console.log(err.res));
   }
 })(ForgetPassword);
-console.log("This is the HOC", FormikForgetPassword);
 export default FormikForgetPassword;
 

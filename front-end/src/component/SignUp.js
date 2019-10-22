@@ -17,9 +17,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import axios from "axios";
-import {
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 function Copyright() {
   return (
@@ -39,7 +37,8 @@ const useStyles = makeStyles(theme => ({
     height: "100vh"
   },
   image: {
-    backgroundImage: 'url(https://images.pexels.com/photos/1268478/pexels-photo-1268478.jpeg?cs=srgb&dl=antioxidant-berries-beverage-1268478.jpg&fm=jpg)',
+    backgroundImage:
+      "url(https://images.pexels.com/photos/1268478/pexels-photo-1268478.jpeg?cs=srgb&dl=antioxidant-berries-beverage-1268478.jpg&fm=jpg)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"
@@ -168,7 +167,7 @@ const SignUp = ({ values }) => {
               >
                 <MenuItem value="5'7">5'7</MenuItem>
                 <MenuItem value="5'8">5'8</MenuItem>
-                ))}
+                {/* ))} */}
               </Field>
               <Field
                 component={TextField}
@@ -185,7 +184,7 @@ const SignUp = ({ values }) => {
                 <MenuItem value="3">3-4 days</MenuItem>
                 <MenuItem value="6">5-6 days</MenuItem>
                 <MenuItem value="7">7 days</MenuItem>
-                ))}
+                {/* ))} */}
               </Field>
               <Field
                 component={TextField}
@@ -203,7 +202,7 @@ const SignUp = ({ values }) => {
                 <MenuItem value="0">Maintain Weight</MenuItem>
                 <MenuItem value="10">Moderate Weight Gain</MenuItem>
                 <MenuItem value="15">Aggressive Weight Gain</MenuItem>
-                ))}
+                {/* ))} */}
               </Field>
               {/* nd their goal (drop down list: aggressive weight loss (20% deficit), moderate weight loss (15% deficit), weight loss (10% deficit), maintain weight, moderate weight gain (10% surplus), aggressive weight gain (15% deficit). */}
             </Grid>
@@ -223,7 +222,8 @@ const SignUp = ({ values }) => {
                     "aria-label": "change date"
                   }}
                 /> */}
-                <Field component={ TextField}
+                <Field
+                  component={TextField}
                   id="date"
                   label="Birthday"
                   type="date"
@@ -248,7 +248,7 @@ const SignUp = ({ values }) => {
                 >
                   <MenuItem value="M">Male</MenuItem>
                   <MenuItem value="F">Female</MenuItem>
-                  ))}
+                  {/* ))} */}
                 </Field>
               </Grid>
             </MuiPickersUtilsProvider>
@@ -279,12 +279,23 @@ const SignUp = ({ values }) => {
   );
 };
 const FormikSignUp = withFormik({
-  mapPropsToValues({ fullName, email,days,goal,confirmPassword, password, weight, height, dob, gender }) {
+  mapPropsToValues({
+    fullName,
+    email,
+    days,
+    goal,
+    confirmPassword,
+    password,
+    weight,
+    height,
+    dob,
+    gender
+  }) {
     return {
       fullName: fullName || "",
       email: email || "",
       password: password || "",
-      confirmPassword:confirmPassword||"",
+      confirmPassword: confirmPassword || "",
       weight: weight || "",
       height: height || "",
       dob: dob || "",
@@ -301,22 +312,23 @@ const FormikSignUp = withFormik({
     days: Yup.string().required(),
     goal: Yup.string().required(),
     gender: Yup.string().required(),
-    password: Yup.string().required('Password is required'),
+    password: Yup.string().required("Password is required"),
     dob: Yup.string().required("Date of Birth is required"),
-    confirmPassword: Yup.string()
-     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Passwords must match"
+    )
   }),
   //You can use this to see the values
   handleSubmit(values) {
     axios
-      // .post("https://reqres.in/api/users/", values)
-      .post("https://buildweek-macrocalc.herokuapp.com/createnewuser", values)
+      .post("https://reqres.in/api/users/", values)
+      // .post("https://buildweek-macrocalc.herokuapp.com/createnewuser", values)
       .then(res => {
         console.log(res);
       })
       .catch(err => console.log(err.res));
   }
 })(SignUp);
-console.log("This is the HOC", FormikSignUp);
+// console.log("This is the HOC", FormikSignUp);
 export default FormikSignUp;
