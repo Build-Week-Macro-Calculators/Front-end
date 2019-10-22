@@ -68,29 +68,6 @@ const useStyles = makeStyles(theme => ({
 
 const SignUp = ({ values }) => {
   const classes = useStyles();
-  // const [valuess, setValues] = React.useState({
-  //   amount: "",
-  //   password: "",
-  //   weight: "",
-  //   weightRange: "",
-  //   showPassword: false
-  // });
-  // const handleChange = prop => event => {
-  //   setValues({ ...valuess, [prop]: event.target.value });
-  // };
-
-  // const handleClickShowPassword = () => {
-  //   setValues({ ...values, showPassword: !values.showPassword });
-  // };
-
-  // const handleMouseDownPassword = event => {
-  //   event.preventDefault();
-  // };
-  // const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-  // const handleDateChange = date => {
-  //   setSelectedDate(date);
-  // };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -143,10 +120,44 @@ const SignUp = ({ values }) => {
                 label="Height"
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
-                // onChange={handleChange("weightRange")}
               >
-                <MenuItem value={48}>4'0"</MenuItem>
-                <MenuItem value={49}>4'1"</MenuItem>
+                <MenuItem value={48}>4' 0"</MenuItem>
+                <MenuItem value={49}>4' 1"</MenuItem>
+                <MenuItem value={50}>4' 2"</MenuItem>
+                <MenuItem value={51}>4' 3"</MenuItem>
+                <MenuItem value={52}>4' 4"</MenuItem>
+                <MenuItem value={53}>4' 5"</MenuItem>
+                <MenuItem value={54}>4' 6"</MenuItem>
+                <MenuItem value={55}>4' 7"</MenuItem>
+                <MenuItem value={56}>4' 8"</MenuItem>
+                <MenuItem value={57}>4' 9"</MenuItem>
+                <MenuItem value={58}>4' 10"</MenuItem>
+                <MenuItem value={59}>4' 11"</MenuItem>
+                <MenuItem value={60}>5' 0"</MenuItem>
+                <MenuItem value={61}>5' 1"</MenuItem>
+                <MenuItem value={62}>5' 2"</MenuItem>
+                <MenuItem value={63}>5' 3"</MenuItem>
+                <MenuItem value={64}>5' 4"</MenuItem>
+                <MenuItem value={65}>5' 5"</MenuItem>
+                <MenuItem value={66}>5' 6"</MenuItem>
+                <MenuItem value={67}>5' 7"</MenuItem>
+                <MenuItem value={68}>5' 8"</MenuItem>
+                <MenuItem value={69}>5' 9"</MenuItem>
+                <MenuItem value={70}>5' 10"</MenuItem>
+                <MenuItem value={71}>5' 11"</MenuItem>
+                <MenuItem value={72}>6' 0"</MenuItem>
+                <MenuItem value={73}>6' 1"</MenuItem>
+                <MenuItem value={74}>6' 2"</MenuItem>
+                <MenuItem value={75}>6' 3"</MenuItem>
+                <MenuItem value={76}>6' 4"</MenuItem>
+                <MenuItem value={77}>6' 5"</MenuItem>
+                <MenuItem value={78}>6' 6"</MenuItem>
+                <MenuItem value={79}>6' 7"</MenuItem>
+                <MenuItem value={80}>6' 8"</MenuItem>
+                <MenuItem value={81}>6' 9"</MenuItem>
+                <MenuItem value={82}>6' 10"</MenuItem>
+                <MenuItem value={83}>6' 11"</MenuItem>
+                <MenuItem value={84}>7' 0"</MenuItem>
               </Field>
               <Field
                 component={TextField}
@@ -156,7 +167,6 @@ const SignUp = ({ values }) => {
                 label="Number of days you Excercise"
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
-                // onChange={handleChange("weightRange")}
               >
                 <MenuItem value={0}>0 days</MenuItem>
                 <MenuItem value={1.5}>1-2 days</MenuItem>
@@ -172,7 +182,6 @@ const SignUp = ({ values }) => {
                 label="Goal"
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
-                // onChange={handleChange("weightRange")}
               >
                 <MenuItem value={-.20}>Aggressive Weight Loss</MenuItem>
                 <MenuItem value={-.15}>Moderate Weight Loss</MenuItem>
@@ -181,24 +190,10 @@ const SignUp = ({ values }) => {
                 <MenuItem value={.10}>Moderate Weight Gain</MenuItem>
                 <MenuItem value={.15}>Aggressive Weight Gain</MenuItem>
               </Field>
-              {/* nd their goal (drop down list: aggressive weight loss (20% deficit), moderate weight loss (15% deficit), weight loss (10% deficit), maintain weight, moderate weight gain (10% surplus), aggressive weight gain (15% deficit). */}
             </Grid>
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify={"space-between"}>
-                {/* <KeyboardDatePicker
-                  margin="normal"
-                  fullWidth
-                  name="dob"
-                  id="date-picker-dialog"
-                  label="Date of Birth"
-                  format="dd/MM/yyyy"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date"
-                  }}
-                /> */}
                 <Field component={ TextField}
                   id="date"
                   label="Age"
@@ -206,9 +201,6 @@ const SignUp = ({ values }) => {
                   name="age"
                   fullWidth
                   className={classes.textField}
-                  // InputLabelProps={{
-                  //   shrink: true
-                  // }}
                 />
                 <Field
                   component={TextField}
@@ -219,7 +211,6 @@ const SignUp = ({ values }) => {
                   placeholder="Male/Female"
                   className={clsx(classes.margin, classes.textField)}
                   value={values.weightRange}
-                  // onChange={handleChange("weightRange")}
                 >
                   <MenuItem value={true}>Male</MenuItem>
                   <MenuItem value={false}>Female</MenuItem>
