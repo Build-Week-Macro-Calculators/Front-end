@@ -164,7 +164,7 @@ const SignUp = ({ values }) => {
                 fullWidth
                 select
                 name="exerciseFrequency"
-                label="Number of days you Excercise"
+                label="Activity Level"
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
               >
@@ -258,12 +258,12 @@ const FormikSignUp = withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    username: Yup.string().required("You must put a username"),
-    weight: Yup.string().required(),
-    height: Yup.string().required(),
-    exerciseFrequency: Yup.string().required(),
-    goal: Yup.string().required(),
-    male: Yup.string().required(),
+    username: Yup.string().required("Username is required"),
+    weight: Yup.string().required("Weight is required"),
+    height: Yup.string().required("Height is required"),
+    exerciseFrequency: Yup.string().required("Choose an activity level"),
+    goal: Yup.string().required("Goal is required"),
+    male: Yup.string().required("Gender is required"),
     password: Yup.string().required('Password is required'),
     age: Yup.string().required("Age is required"),
   }),
