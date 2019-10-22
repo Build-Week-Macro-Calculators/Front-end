@@ -1,18 +1,41 @@
-import React, { useEffect } from "react";
-import "./Dashboard.css"
+import React, { useEffect, useState } from "react";
+import "./Dashboard.scss"
 import { connect } from "react-redux"
 
 import HeaderLayout from "../HeaderLayout"
-import { fetchProfile } from "../../store/actions"
+import { fetchProfile, editGoals } from "../../store/actions"
 
 const Dashboard = ({ 
     currentUser,
     calorieIntake, 
-    fetchProfile 
+    fetchProfile ,
+    editGoals
 }) => {
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [newInfo, setNewInfo] = useState({
+        goal: 0,
+        weight: 0
+    })
+
+    const saveGoals = e => {
+        e.preventDefault();
+        editGoals(newInfo)    
+        setIsEditing(false)
+        console.log(newInfo)
+    }
+    
     useEffect(() => {
         fetchProfile();
-    }, [])
+    }, [saveGoals])
+
+
+    const handleChange = e => {
+        setNewInfo({
+            ...newInfo,
+            [e.target.name]: +e.target.value
+        })
+    }
 
     return (
       <div className = "containerDashboard">
@@ -22,29 +45,39 @@ const Dashboard = ({
         </div>
         <div className = "mainBox">
             <div className ="box">
-                <h3>Today's Calorie Goal</h3>
-                <h1>{calorieIntake} Calories</h1>
-                <select className = "goalsInput" placeholder ="Edit your nutrition goals">
-                    <option value="null">Edit Your Nutrition Goals</option>
-                    <option value="null">Aggressive Weight Loss</option>
-                    <option value="null">Moderate Weight Loss</option>
-                    <option value="null">Mild Weight Loss</option>
-                    <option value="null">Maintain Healthy Weight</option>
-                    <option value="null">Moderate Weight Gain</option>
-                    <option value="null">Aggressive Weight Gain</option>
-                </select>
+            { !isEditing 
+                ?   <>
+                        <h3>Today's Calorie Goal</h3>
+                        <h1>{calorieIntake} Calories</h1>
+                        <button onClick={() => setIsEditing(true)}>Edit Your Goals</button>               
+                    </>
+                :   <form onSubmit={saveGoals}>
+                        <label>Edit your current weight:</label>
+                        <input 
+                            name="weight"
+                            type="number" 
+                            placeholder={`Last weigh-in: ${currentUser.weight} lbs.`} 
+                            value={newInfo.weight}
+                            onChange={handleChange} 
+                        />
+                        <select onChange={handleChange} name="goal" className = "goalsInput" placeholder ="Edit your nutrition goals">
+                            <option value=''>Edit Nutrition Goals</option>
+                            <option value={-.20}>Aggressive Weight Loss</option>
+                            <option value={-.15}>Moderate Weight Loss</option>
+                            <option value={-.10}>Mild Weight Loss</option>
+                            <option value={0}>Maintain Healthy Weight</option>
+                            <option value={.10}>Moderate Weight Gain</option>
+                            <option value={.15}>Aggressive Weight Gain</option>
+                        </select>
+                        <button type="submit">Save New Goals</button>
+                    </form>  
+            }
             </div>
             <div className = "box display-flex">
                 <h3>Macro Nutrient Breakdown</h3>
                 <div className = "pieChart"></div>
                 <h4>Protein: {Math.round(calorieIntake * 0.075)}g Carbs: {Math.round(calorieIntake * 0.1)}g Fat: {Math.round(calorieIntake * 0.033)}g</h4>
             </div>
-        </div>
-        <div className ="bottomDashboard">
-
-        </div>
-        <div className="bottom">
-
         </div>
       </div>
 
@@ -60,4 +93,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchProfile})(Dashboard);
+export default connect(mapStateToProps, {fetchProfile, editGoals})(Dashboard);

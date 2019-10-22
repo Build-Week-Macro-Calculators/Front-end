@@ -7,7 +7,10 @@ import {
     REGISTER_FAILURE,
     FETCH_START,
     FETCH_SUCCESS,
-    FETCH_FAILURE
+    FETCH_FAILURE,
+    EDITING_START,
+    EDITING_SUCCESS,
+    EDITNG_FAILURE
 } from "../actions"
 
 const initialState = {
@@ -79,6 +82,25 @@ export const userReducer = (state = initialState, action) => {
                 error: action.payload,
                 loading: false
             }
+        case EDITING_START: 
+            return {
+                ...state,
+                loading: true,
+                error: ''
+            }
+        case EDITING_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                currentUser: action.payload
+            }
+        case EDITNG_FAILURE: 
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+
         default:
             return state;
 
