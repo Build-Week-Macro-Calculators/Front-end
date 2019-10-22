@@ -154,7 +154,6 @@ const FormikLogin = withFormik({
     rest.props.login(values);
   }
 })(Login);
-export default FormikLogin;
 
 console.log("This is the HOC", FormikLogin);
 

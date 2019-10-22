@@ -14,7 +14,15 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.primary
+    color: theme.palette.text.primary,
+   
+  },
+  paperCal: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.primary,
+    display:"flex",
+    flexDirection:"row"
   },
   round: {
     margin: "10px auto",
@@ -76,8 +84,8 @@ export default function MealAndSnack() {
               alignItems="center"
               spacing={2}
             >
-              <Grid item sm={5}>
-                <Paper className={classes.paper}>
+              <Grid item sm={3}>
+                <Paper className={classes.paperCal}>
                   <Typography variant="h4">Per Meal:</Typography>
                   <ReactMinimalPieChart
                     animate
@@ -119,15 +127,21 @@ export default function MealAndSnack() {
                     rounded
                     startAngle={0}
                   />
-                   <div className={classes.round}>
+            <div className={classes.round}>
                     <img src={images} alt="Logo" />
-                    <Typography variant="h3">240 KCAL</Typography>
+                    <Typography variant="h3">390 KCAL</Typography>
                   </div>
                 </Paper>
-               
               </Grid>
-              
-              <Grid item sm={5}>
+              <Grid item sm={3}>
+                <Paper className={classes.paper}>
+                  <div className={classes.round}>
+                    <img src={images} alt="Logo" />
+                    <Typography variant="h3">390 KCAL</Typography>
+                  </div>
+                </Paper>
+              </Grid>
+              <Grid item sm={3}>
                 <Paper className={classes.paper}>
                   <Typography variant="h4">Per Snack:</Typography>
                   <ReactMinimalPieChart
@@ -170,6 +184,10 @@ export default function MealAndSnack() {
                     rounded
                     startAngle={0}
                   />
+                </Paper>
+              </Grid>
+              <Grid item sm={3}>
+                <Paper className={classes.paper}>
                   <div className={classes.round}>
                     <img src={images} alt="Logo" />
                     <Typography variant="h3">390 KCAL</Typography>

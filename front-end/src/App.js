@@ -18,10 +18,8 @@ function App() {
   return (
     <>
    <Route  exact path="/" component={Login} />
-   <Route exact path="/SignUp" component={SignUp} />
    <Route exact path="/ForgetPassword" component={ForgetPassword} />
    <Route exact path="/MealAndSnack" component={MealAndSnack} />
-      <Route  exact path="/" component={Login} />
       <Route exact path="/SignUp" render={props => 
         <Provider store={store}>
           <SignUp {...props} />

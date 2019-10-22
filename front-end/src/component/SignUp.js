@@ -19,9 +19,6 @@ import { TextField } from "formik-material-ui";
  
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-import {
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
 import { connect } from "react-redux"
 
 import { register } from "../store/actions"
