@@ -5,7 +5,6 @@ import {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
-    register
 } from "../actions"
 
 const initialState = {
@@ -17,7 +16,6 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
         case LOGIN_START:
-            console.log('logging in!')
             return {
                 ...state, 
                 loading: true,
