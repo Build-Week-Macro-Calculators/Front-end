@@ -6,5 +6,9 @@ export {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
-    register
+    register,
+    FETCH_START,
+    FETCH_SUCCESS,
+    FETCH_FAILURE,
+    fetchProfile
  } from "./userActions"

@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 const HeaderLayout = props => {
   const classes = useStyles();
-
+  
   const logout = () => {
     localStorage.removeItem('token');
     history.push("/")

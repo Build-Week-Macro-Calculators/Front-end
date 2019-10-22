@@ -5,16 +5,37 @@ import {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
+    FETCH_START,
+    FETCH_SUCCESS,
+    FETCH_FAILURE
 } from "../actions"
 
 const initialState = {
-    currentUser: null,
+    currentUser: {},
     loading: false,
     error: null
 }
 
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
+        case FETCH_START:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            }
+        case FETCH_SUCCESS:
+            return {
+                ...state,
+                currentUser: action.payload,
+                loading: false
+            }
+        case FETCH_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
         case LOGIN_START:
             return {
                 ...state, 
@@ -44,8 +65,8 @@ export const userReducer = (state = initialState, action) => {
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                currentUser: action.payload.user,
-                loading: false
+                currentUser: action.payload,
+                loading: false,
             }
         case REGISTER_FAILURE:
             return {
