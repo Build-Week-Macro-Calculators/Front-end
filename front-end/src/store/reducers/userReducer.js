@@ -83,12 +83,14 @@ export const userReducer = (state = initialState, action) => {
                 loading: false
             }
         case EDITING_START: 
+        console.log('LOADING STARTED')
             return {
                 ...state,
                 loading: true,
                 error: ''
             }
         case EDITING_SUCCESS: 
+        console.log('LOADING COMPLETE')
             return {
                 ...state,
                 loading: false,

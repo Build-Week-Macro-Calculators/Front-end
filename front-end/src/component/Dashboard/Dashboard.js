@@ -24,10 +24,10 @@ const Dashboard = ({
         setIsEditing(false)
         console.log(newInfo)
     }
-    
+
     useEffect(() => {
         fetchProfile();
-    }, [saveGoals])
+    }, [currentUser.weight])
 
 
     const handleChange = e => {
@@ -46,11 +46,11 @@ const Dashboard = ({
         <div className = "mainBox">
             <div className ="box">
             { !isEditing 
-                ?   <>
+                ?   <div className="calorieGoal">
                         <h3>Today's Calorie Goal</h3>
                         <h1>{calorieIntake} Calories</h1>
                         <button onClick={() => setIsEditing(true)}>Edit Your Goals</button>               
-                    </>
+                    </div>
                 :   <form onSubmit={saveGoals}>
                         <label>Edit your current weight:</label>
                         <input 
