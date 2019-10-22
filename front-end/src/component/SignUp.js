@@ -168,11 +168,11 @@ const SignUp = ({ values }) => {
                 className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
               >
-                <MenuItem value={0}>0 days</MenuItem>
-                <MenuItem value={1.5}>1-2 days</MenuItem>
-                <MenuItem value={3.5}>3-4 days</MenuItem>
-                <MenuItem value={5.5}>5-6 days</MenuItem>
-                <MenuItem value={7}>7 days</MenuItem>
+                <MenuItem value={1.2}>0 days</MenuItem>
+                <MenuItem value={1.375}>1-2 days</MenuItem>
+                <MenuItem value={1.55}>3-4 days</MenuItem>
+                <MenuItem value={1.725}>5-6 days</MenuItem>
+                <MenuItem value={1.9}>7 days</MenuItem>
               </Field>
               <Field
                 component={TextField}
