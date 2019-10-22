@@ -1,11 +1,14 @@
 import React from "react";
 import "./Dashboard.css"
+import { connect } from "react-redux"
 
+import HeaderLayout from "../HeaderLayout"
 
-const Dashboard = () => {
+const Dashboard = (props) => {
 
   return (
       <div className = "containerDashboard">
+      <HeaderLayout history={props.history} />
         <div className="headerDashboard">
             <h1>Dashboard</h1>
         </div>
@@ -40,4 +43,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default connect(null, {})(Dashboard);

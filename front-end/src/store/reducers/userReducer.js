@@ -44,7 +44,6 @@ export const userReducer = (state = initialState, action) => {
                 currentUser: null
             }
         case REGISTER_SUCCESS:
-            localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
                 currentUser: action.payload.user,

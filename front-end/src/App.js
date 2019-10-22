@@ -18,10 +18,8 @@ import Dashboard from "./component/Dashboard/Dashboard"
 import { PrivateRoute } from "./component/PrivateRoute"
 
 function App() {
-  // Test, can you see this?
   return (
     <>
-      <HeaderLayout/>
       <Route  exact path="/" component={Login} />
       <Route exact path="/SignUp" render={props => 
         <Provider store={store}>
