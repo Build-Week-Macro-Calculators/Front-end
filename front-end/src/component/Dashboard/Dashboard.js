@@ -15,7 +15,7 @@ const Dashboard = ({
     const [isEditing, setIsEditing] = useState(false);
     const [newInfo, setNewInfo] = useState({
         goal: 0,
-        weight: 0
+        weight: currentUser.weight ? currentUser.weight : ''
     })
 
     const saveGoals = e => {
@@ -27,7 +27,11 @@ const Dashboard = ({
 
     useEffect(() => {
         fetchProfile();
-    }, [currentUser.weight])
+        setNewInfo({
+            ...newInfo,
+            weight: currentUser.weight
+        })
+    }, [currentUser.weight, currentUser.goal])
 
 
     const handleChange = e => {
@@ -52,7 +56,7 @@ const Dashboard = ({
                         <button onClick={() => setIsEditing(true)}>Edit Your Goals</button>               
                     </div>
                 :   <form onSubmit={saveGoals}>
-                        <label>Edit your current weight:</label>
+                        <label>Recent Weigh-In (lbs.):</label>
                         <input 
                             name="weight"
                             type="number" 
@@ -60,8 +64,8 @@ const Dashboard = ({
                             value={newInfo.weight}
                             onChange={handleChange} 
                         />
+                        <label>Edit Nutrition Goals:</label>
                         <select onChange={handleChange} name="goal" className = "goalsInput" placeholder ="Edit your nutrition goals">
-                            <option value=''>Edit Nutrition Goals</option>
                             <option value={-.20}>Aggressive Weight Loss</option>
                             <option value={-.15}>Moderate Weight Loss</option>
                             <option value={-.10}>Mild Weight Loss</option>
