@@ -14,23 +14,12 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.primary,
-   
-  },
-  paperCal: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.primary,
-    display:"flex",
-    flexDirection:"row"
+    color: theme.palette.text.primary
   },
   round: {
     margin: "10px auto",
     width: 200,
-    height: 200,
-    padding: 10,
-    borderRadius: 110,
-    border: "2px solid black"
+   
   }
 }));
 
@@ -80,12 +69,12 @@ export default function MealAndSnack() {
             <Grid
               container
               direction="row"
-              justify="space-around"
+              justify="space-evenly"
               alignItems="center"
               spacing={2}
             >
               <Grid item sm={3}>
-                <Paper className={classes.paperCal}>
+                <Paper className={classes.paper}>
                   <Typography variant="h4">Per Meal:</Typography>
                   <ReactMinimalPieChart
                     animate
@@ -127,20 +116,13 @@ export default function MealAndSnack() {
                     rounded
                     startAngle={0}
                   />
-            <div className={classes.round}>
-                    <img src={images} alt="Logo" />
-                    <Typography variant="h3">390 KCAL</Typography>
+                   <div className={classes.round}>
+                    <Typography variant="h4">240 KCAL</Typography>
                   </div>
                 </Paper>
+               
               </Grid>
-              <Grid item sm={3}>
-                <Paper className={classes.paper}>
-                  <div className={classes.round}>
-                    <img src={images} alt="Logo" />
-                    <Typography variant="h3">390 KCAL</Typography>
-                  </div>
-                </Paper>
-              </Grid>
+              
               <Grid item sm={3}>
                 <Paper className={classes.paper}>
                   <Typography variant="h4">Per Snack:</Typography>
@@ -184,13 +166,8 @@ export default function MealAndSnack() {
                     rounded
                     startAngle={0}
                   />
-                </Paper>
-              </Grid>
-              <Grid item sm={3}>
-                <Paper className={classes.paper}>
                   <div className={classes.round}>
-                    <img src={images} alt="Logo" />
-                    <Typography variant="h3">390 KCAL</Typography>
+                    <Typography variant="h4">390 KCAL</Typography>
                   </div>
                 </Paper>
               </Grid>
