@@ -22,7 +22,6 @@ const Dashboard = ({
         e.preventDefault();
         editGoals(newInfo)    
         setIsEditing(false)
-        console.log(newInfo)
     }
 
     useEffect(() => {
@@ -31,6 +30,7 @@ const Dashboard = ({
             ...newInfo,
             weight: currentUser.weight
         })
+        console.log(currentUser)
     }, [currentUser.weight, currentUser.goal])
 
 
