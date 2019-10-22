@@ -10,6 +10,8 @@ import { pink } from '@material-ui/core/colors';
 import { connect } from "react-redux"
 import { datePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
 
+import history from "../history"
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -28,7 +30,7 @@ const HeaderLayout = props => {
 
   const logout = () => {
     localStorage.removeItem('token');
-    props.history.push("/")
+    history.push("/")
   }
 
     return(
@@ -39,8 +41,8 @@ const HeaderLayout = props => {
             <Typography variant="h6" className={classes.title}>
               Macro Calculator
             </Typography>
-            <Button onClick={() => props.history.push("/dashboard")} color="inherit">Dashboard</Button>
-            <Button color="inherit">Meals</Button>
+            <Button onClick={() => history.push("/dashboard")} color="inherit">Dashboard</Button>
+            <Button onClick={() => history.push("/meals")} color="inherit">Meals</Button>
             <Button onClick={logout} color="inherit">Log Out</Button>
           </Toolbar>
         </AppBar>

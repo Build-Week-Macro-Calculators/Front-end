@@ -24,12 +24,12 @@ function App() {
       <Route  exact path="/" component={Login} />
       <Route exact path="/SignUp" render={props => 
         <Provider store={store}>
-        <SignUp {...props} />
+          <SignUp {...props} />
         </Provider> 
         }/>
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/Meals" component={Meals} />
       <Route exact path="/ForgetPassword" component={ForgetPassword} />
-      <Route exact path="/Meals" component={Meals} />
    </>
   );
 }

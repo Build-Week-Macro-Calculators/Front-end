@@ -8,7 +8,7 @@ const Dashboard = (props) => {
 
   return (
       <div className = "containerDashboard">
-      <HeaderLayout history={props.history} />
+      <HeaderLayout />
         <div className="headerDashboard">
             <h1>Dashboard</h1>
         </div>
