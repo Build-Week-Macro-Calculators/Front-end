@@ -28,7 +28,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="#">
+      <Link color="inherit" href="#" to="/dashboard">
         Macros Calculator
       </Link>{" "}
       {new Date().getFullYear()}
@@ -273,12 +273,11 @@ const FormikSignUp = withFormik({
   }),
 
   //You can use this to see the values
-
   handleSubmit(values, {resetForm, ...rest}) {
     rest.props.register(values);
   }
+
 })(SignUp);
-console.log("This is the HOC", FormikSignUp);
 
 const mapStateToProps = state => {
   console.log(state)

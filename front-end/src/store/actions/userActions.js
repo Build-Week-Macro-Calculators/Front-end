@@ -1,5 +1,4 @@
 import { axiosWithAuth } from "../../utils/axiosWithAuth"
-import { Redirect } from "react-router-dom"  
 import history from "../../history"
 
 export const LOGIN_START = "LOGIN_START"
