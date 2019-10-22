@@ -6,7 +6,7 @@ import { store } from "./index"
 import SignUp from "./component/SignUp";
 import Login from "./component/Login";
 import Dashboard from "./component/Dashboard/Dashboard"
-import Meals from "./component/Meals"
+import Meals from "./component/Meal/Meals"
 import { PrivateRoute } from "./component/PrivateRoute"
 
 function App() {

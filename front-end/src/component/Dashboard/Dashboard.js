@@ -2,7 +2,7 @@ import React from "react";
 import "./Dashboard.css"
 import { connect } from "react-redux"
 
-import HeaderLayout from "../HeaderLayout"
+import HeaderLayout from "../HeaderLayout/HeaderLayout"
 
 const Dashboard = (props) => {
 

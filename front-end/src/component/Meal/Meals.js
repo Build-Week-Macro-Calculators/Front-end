@@ -4,9 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Button } from "@material-ui/core";
 import ReactMinimalPieChart from "react-minimal-pie-chart";
-
-import images from "../images/Mac.jpg";
-import HeaderLayout from "./HeaderLayout"
+import './Meal.css'
+import HeaderLayout from "../HeaderLayout/HeaderLayout"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,7 +32,7 @@ export default function Meals() {
     <div className={classes.root}>
       <HeaderLayout />
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={12}>
+        <Grid item xs={12} sm={12} className="macroDiv">
           <Paper className={classes.paper}>
             <Typography variant="h3">Macronutrient Breakdown</Typography>
             <Grid item xs>
