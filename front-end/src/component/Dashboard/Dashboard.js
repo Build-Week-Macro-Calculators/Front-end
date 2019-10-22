@@ -6,26 +6,15 @@ import HeaderLayout from "../HeaderLayout"
 import { fetchProfile } from "../../store/actions"
 
 const Dashboard = ({ 
-    currentUser, 
+    currentUser,
+    calorieIntake, 
     fetchProfile 
 }) => {
-    const {weight, height, age, exerciseFrequency, goal, male} = currentUser;
-
     useEffect(() => {
         fetchProfile();
     }, [])
 
-    let calorieIntake;
-    if (male) {
-        calorieIntake = Math.ceil(((66 + (6.23 * weight) + (12.7 * height) - (6.8 * age)) * exerciseFrequency) * (1 + goal))
-    } else {
-        calorieIntake = Math.ceil(((655 + (4.35 * weight) + (4.7 * height) - (4.5 * age)) * exerciseFrequency) * (1 + goal))
-    }
-    const protein = Math.round(calorieIntake * 0.075)
-    const carbs = Math.round(calorieIntake * 0.1)
-    const fat = Math.round(calorieIntake * 0.033)
-
-  return (
+    return (
       <div className = "containerDashboard">
       <HeaderLayout />
         <div className="headerDashboard">
@@ -48,7 +37,7 @@ const Dashboard = ({
             <div className = "box display-flex">
                 <h3>Macro Nutrient Breakdown</h3>
                 <div className = "pieChart"></div>
-                <h4>Protein: {protein}g Carbs: {carbs}g Fat: {fat}g</h4>
+                <h4>Protein: {Math.round(calorieIntake * 0.075)}g Carbs: {Math.round(calorieIntake * 0.1)}g Fat: {Math.round(calorieIntake * 0.033)}g</h4>
             </div>
         </div>
         <div className ="bottomDashboard">
@@ -66,7 +55,8 @@ const mapStateToProps = state => {
     console.log(state)
     return {
         currentUser: state.currentUser,
-        loading: state.loading
+        loading: state.loading,
+        calorieIntake: state.calorieIntake
     }
 }
 

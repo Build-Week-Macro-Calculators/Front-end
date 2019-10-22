@@ -13,7 +13,8 @@ import {
 const initialState = {
     currentUser: {},
     loading: false,
-    error: null
+    error: null,
+    calorieIntake: null
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -25,10 +26,14 @@ export const userReducer = (state = initialState, action) => {
                 error: null
             }
         case FETCH_SUCCESS:
+            const {weight, height, age, exerciseFrequency, goal, male} = action.payload;            
             return {
                 ...state,
                 currentUser: action.payload,
-                loading: false
+                loading: false,
+                calorieIntake: male
+                    ? Math.ceil(((66 + (6.23 * weight) + (12.7 * height) - (6.8 * age)) * exerciseFrequency) * (1 + goal))
+                    : Math.ceil(((655 + (4.35 * weight) + (4.7 * height) - (4.5 * age)) * exerciseFrequency) * (1 + goal))
             }
         case FETCH_FAILURE:
             return {

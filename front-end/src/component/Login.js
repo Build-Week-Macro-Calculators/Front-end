@@ -16,7 +16,7 @@ import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import { connect } from "react-redux"
 
-import { login } from "../store/actions"
+import { login, fetchProfile } from "../store/actions"
 
 
 
@@ -153,5 +153,5 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {login})(FormikLogin);
+export default connect(mapStateToProps, {login, fetchProfile })(FormikLogin);
 
