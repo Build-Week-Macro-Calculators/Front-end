@@ -39,7 +39,7 @@ const HeaderLayout = props => {
             <Typography variant="h6" className={classes.title}>
               Macro Calculator
             </Typography>
-            <Button color="inherit">Dashboard</Button>
+            <Button onClick={() => props.history.push("/dashboard")} color="inherit">Dashboard</Button>
             <Button color="inherit">Meals</Button>
             <Button onClick={logout} color="inherit">Log Out</Button>
           </Toolbar>

@@ -1,10 +1,11 @@
 import { axiosWithAuth } from "../../utils/axiosWithAuth"
 import { Redirect } from "react-router-dom"  
+import history from "../../history"
 
 export const LOGIN_START = "LOGIN_START"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAILURE = "LOGIN_FAILURE"
-export const login = (credentials, history) => dispatch => {
+export const login = credentials => dispatch => {
     dispatch({ type: LOGIN_START })
     axiosWithAuth().post("/auth/login", credentials)
         .then(res => {
@@ -19,7 +20,7 @@ export const login = (credentials, history) => dispatch => {
 export const REGISTER_START = "REGISTER_START"
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS"
 export const REGISTER_FAILURE = "REGISTER_FAILURE"
-export const register = (credentials, history) => dispatch => {
+export const register = credentials => dispatch => {
     dispatch({ type: REGISTER_START})
     console.log(credentials)
     axiosWithAuth().post("/auth/register", credentials)
