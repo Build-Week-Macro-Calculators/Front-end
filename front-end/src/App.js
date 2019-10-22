@@ -19,19 +19,17 @@ import Meals from "./component/Meals/Meals"
 import { PrivateRoute } from "./component/PrivateRoute"
 
 function App() {
-  // Test, can you see this?
   return (
     <>
-      <HeaderLayout/>
       <Route  exact path="/" component={Login} />
       <Route exact path="/SignUp" render={props => 
         <Provider store={store}>
-        <SignUp {...props} />
+          <SignUp {...props} />
         </Provider> 
         }/>
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/Meals" component={Meals} />
       <Route exact path="/ForgetPassword" component={ForgetPassword} />
-      <Route exact path="/Meals" component={Meals} />
    </>
   );
 }

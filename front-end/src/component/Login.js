@@ -150,7 +150,6 @@ const FormikLogin = withFormik({
   //You can use this to see the values
   handleSubmit(values, {resetForm, ...rest} ) {
     rest.props.login(values);
-    rest.props.history.push("/dashboard")
   }
 })(Login);
 

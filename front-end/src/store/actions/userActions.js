@@ -1,5 +1,7 @@
 import { axiosWithAuth } from "../../utils/axiosWithAuth"
- 
+import { Redirect } from "react-router-dom"  
+import history from "../../history"
+
 export const LOGIN_START = "LOGIN_START"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAILURE = "LOGIN_FAILURE"
@@ -8,7 +10,9 @@ export const login = credentials => dispatch => {
     axiosWithAuth().post("/auth/login", credentials)
         .then(res => {
             console.log(res)
-            dispatch({ type: LOGIN_SUCCESS, payload: credentials.username })
+            localStorage.setItem('token', res.data.token)
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
+            history.push("/dashboard")
         })
         .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err.reponse }))
 } 
@@ -22,8 +26,9 @@ export const register = credentials => dispatch => {
     axiosWithAuth().post("/auth/register", credentials)
         .then(res => {
             console.log(res)
+            localStorage.setItem('token', res.data.user.token)
             dispatch({ type: REGISTER_SUCCESS, payload: res.data })
+            history.push("/dashboard")
         })
         .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err.response }))
-
 }

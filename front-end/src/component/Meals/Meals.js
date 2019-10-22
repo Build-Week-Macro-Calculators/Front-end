@@ -1,11 +1,14 @@
 import React from "react";
 import "./Meals.css"
 
+import HeaderLayout from "../HeaderLayout"
+
 
 const Meals = () => {
 
   return (
       <div className = "containerDashboard">
+          <HeaderLayout />
         <div className="headerDashboard">
             <h1>Meals and Snacks</h1>
         </div>
