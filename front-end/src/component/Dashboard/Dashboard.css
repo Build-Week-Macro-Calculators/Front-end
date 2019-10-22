@@ -30,6 +30,7 @@ h3 {
     padding-bottom: 50px;
     min-width: 1020px;
     background-image: linear-gradient(#FCE3C7, #f7b267, #f27059);
+    box-shadow: 2px 2px 2px black;
 }
 .goalsInput {
     height: 30px;
@@ -62,6 +63,80 @@ h3 {
     height: 100px;
     background-color: #f4845f;
 }
+.flex-row {
+    display: flex;
+    justify-content: space-around;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.meals {
+    height: 200px;
+    width: 80%;
+    min-width: 1020px;
+    background-image: linear-gradient(#FCE3C7, #f7b267, #f27059);
+    margin-top: 50px;
+    border: 2px solid black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 2px 2px black;
+    
+}
+.mealsH2 {
+    color: white;
+    background-color: #5c5c5c;
+    border: 2px solid black;
+    width: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-shadow: 1px 1px 1px black;
+}
+.secondBox {
+    background-color: #5c5c5c;
+    display: flex;
+    border: solid black 2px;
+    box-shadow: 2px 2px 2px black;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.mealsInput {
+    margin-left: 3px;
+    margin-right: 3px;
+    color: white;
+    background-color: #f27059;
+    border: solid black 2px;
+    border-radius: 20px;
+    height: 30px;
+    text-shadow: 1px 1px 1px black;
+}
+.mealsInput:hover {
+    background-color: #f7b267;
+}
+.h2one {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    padding-right: 20px;
+}
+.inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.macroBoxes {
+    height: 100px;
+    width: 100px;
+    background-color: #f27059;
+    border: 2px solid black;
+    box-shadow: 1px 1px 1px black;
+}
+.macroBoxesContainer {
+    display: flex;
+    justify-content: space-around;
+}
 
 @media only screen and (max-width: 1000px) {
     .mainBox {
@@ -73,5 +148,9 @@ h3 {
     }
     .box {
         margin-top: 25px;
+    }
+    .meals {
+        width: 600px;
+        min-width: 600px;
     }
   }

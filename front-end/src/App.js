@@ -15,6 +15,7 @@ import SignUp from "./component/SignUp";
 import Login from "./component/Login";
 import ForgetPassword from "./component/ForgetPassword";
 import Dashboard from "./component/Dashboard/Dashboard"
+import Meals from "./component/Meals/Meals"
 import { PrivateRoute } from "./component/PrivateRoute"
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         }/>
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <Route exact path="/ForgetPassword" component={ForgetPassword} />
+      <Route exact path="/Meals" component={Meals} />
    </>
   );
 }
