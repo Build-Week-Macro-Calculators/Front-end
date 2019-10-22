@@ -5,6 +5,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { pink } from '@material-ui/core/colors';
+import { connect } from "react-redux"
+import { datePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
+
+import history from "../history"
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -18,24 +26,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function HeaderLayout (){
+const HeaderLayout = props => {
   const classes = useStyles();
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    history.push("/")
+  }
+
     return(
-<div className="header">
-<div className={classes.root}>
-      <AppBar position="fixed">
-        <Toolbar>
-        
-          <Typography variant="h6" className={classes.title}>
-            Macro Nuitrent Calculator
-          </Typography>
-          <Button color="inherit">Home</Button>
-          <Button color="inherit">About</Button>
-          <Button color="inherit">FAQ</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+      <div className="header">
+      <div className={classes.root}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              Macro Calculator
+            </Typography>
+            <Button onClick={() => history.push("/dashboard")} color="inherit">Dashboard</Button>
+            <Button onClick={() => history.push("/meals")} color="inherit">Meals</Button>
+            <Button onClick={logout} color="inherit">Log Out</Button>
+          </Toolbar>
+        </AppBar>
       </div>
-    );
-    
+      </div>
+    );    
 }
+
+export default connect(null, {})(HeaderLayout) 

@@ -15,6 +15,9 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import axios from "axios";
+import { connect } from "react-redux"
+
+import { login } from "../store/actions"
 
 
 
@@ -80,10 +83,10 @@ const useStyles = makeStyles(theme => ({
               variant="outlined"
               margin="normal"
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <Field component={TextField}
@@ -134,27 +137,33 @@ const useStyles = makeStyles(theme => ({
 };
 
 const FormikLogin = withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ username, password }) {
     return {
-     
-      email: email || "",
+      username: username || "",
       password: password || "",
-      
     };
   },
+  
   validationSchema: Yup.object().shape({
-    email: Yup.string().required("Email required"),
+    username: Yup.string().required("Username required"),
     password: Yup.string().required("Please enter password")
   }),
+
   //You can use this to see the values
-  handleSubmit(values) {
-    axios
-      .post("https://reqres.in/api/users/", values)
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => console.log(err.res));
+  handleSubmit(values, {resetForm, ...rest} ) {
+    rest.props.login(values);
   }
 })(Login);
 export default FormikLogin;
+
+console.log("This is the HOC", FormikLogin);
+
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    state: state
+  }
+}
+
+export default connect(mapStateToProps, {login})(FormikLogin);
 
