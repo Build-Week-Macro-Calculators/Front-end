@@ -26,8 +26,13 @@ const Meals = ({
   }) => {
 
   const classes = useStyles();
-  const [mealAmount, setMealAmount] = useState(4)
-  const [snackAmount, setSnackAmount] = useState(true)
+  const [mealAmount, setMealAmount] = useState({
+    meals: 3,
+    threeMeals: true,
+    fourMeals: false,
+    snackAndMeals: false
+  })
+  const [snackAmount, setSnackAmount] = useState(false)
 
   useEffect(() => {
     fetchProfile();
@@ -47,8 +52,15 @@ const Meals = ({
                   variant="outlined"
                   color="inherit"
                   className={classes.button}
+                  style={mealAmount.threeMeals ? {boxShadow: '0px 0px 15px #FEE8BD'} : {}}
                   onClick={() => {
-                    setMealAmount(3)
+                    setMealAmount({
+                      ...mealAmount,
+                      meals: 3,
+                      threeMeals: true,
+                      fourMeals: false,
+                      snackAndMeals: false
+                    })
                     setSnackAmount(false)
                   }}
                 >
@@ -60,8 +72,15 @@ const Meals = ({
                   variant="outlined"
                   color="inherit"
                   className={classes.button}
+                  style={mealAmount.fourMeals ? {boxShadow: '0px 0px 15px #FEE8BD'} : {}}
                   onClick={() => {
-                    setMealAmount(4)
+                    setMealAmount({
+                      ...mealAmount,
+                      meals: 4,
+                      threeMeals: false,
+                      fourMeals: true,
+                      snackAndMeals: false
+                    })
                     setSnackAmount(false)
                   }}
                 >
@@ -73,8 +92,15 @@ const Meals = ({
                   variant="outlined"
                   color="inherit"
                   className={classes.button}
+                  style={mealAmount.snackAndMeals ? {boxShadow: '0px 0px 15px #FEE8BD'} : {}}
                   onClick={() => {
-                    setMealAmount(4)
+                    setMealAmount({
+                      ...mealAmount,
+                      meals: 4,
+                      threeMeals: false,
+                      fourMeals: false,
+                      snackAndMeals: true
+                    })
                     setSnackAmount(true)
                   }}
                 >
@@ -91,23 +117,23 @@ const Meals = ({
               className='info-container'
             >
               <div className='info-breakdown'>
-                  <Typography variant="h4">Meal Breakdown</Typography>
+                  <h4>Meal Breakdown</h4>
                   <div className="macronutrients">
-                    <div className='macro-div'><p>{Math.floor(protein / mealAmount)}g <br /> Protein</p></div>
-                    <div className='macro-div'><p>{Math.floor(carbs / mealAmount)}g <br /> Carbs</p></div>
-                    <div className='macro-div'><p>{Math.floor(fat / mealAmount)}g <br /> Fat</p></div>
+                    <div className='macro-div protein-bubble'><p>{Math.floor(protein / mealAmount.meals)}g <br /> Protein</p></div>
+                    <div className='macro-div carb-bubble'><p>{Math.floor(carbs / mealAmount.meals)}g <br /> Carbs</p></div>
+                    <div className='macro-div fat-bubble'><p>{Math.floor(fat / mealAmount.meals)}g <br /> Fat</p></div>
                   </div>
-                    <Typography variant="h3">{Math.round(calorieIntake / mealAmount)} calories per meal</Typography>
+                    <h3>{Math.round(calorieIntake / mealAmount.meals)} calories per meal</h3>
               </div>
               
               <div className='info-breakdown'>
-                  <Typography variant="h4">{snackAmount ? 'Snack Breakdown' : 'No Snacks Today!'}</Typography>
+                  <h4>{snackAmount ? 'Snack Breakdown' : 'No Snacks Today!'}</h4>
                   <div className="macronutrients">
-                    <div className='macro-div'><p>{!snackAmount ? 0 : Math.floor((protein / mealAmount) / 2)}g <br /> Protein</p></div>
-                    <div className='macro-div'><p>{!snackAmount ? 0 : Math.floor((carbs / mealAmount) / 2)}g <br /> Carbs</p></div>
-                    <div className='macro-div'><p>{!snackAmount ? 0 : Math.floor((fat / mealAmount) / 2)}g <br /> Fat</p></div>
+                    <div className='macro-div protein-bubble'><p>{!snackAmount ? 0 : Math.floor((protein / mealAmount.meals) / 2)}g <br /> Protein</p></div>
+                    <div className='macro-div carb-bubble'><p>{!snackAmount ? 0 : Math.floor((carbs / mealAmount.meals) / 2)}g <br /> Carbs</p></div>
+                    <div className='macro-div fat-bubble'><p>{!snackAmount ? 0 : Math.floor((fat / mealAmount.meals) / 2)}g <br /> Fat</p></div>
                   </div>
-                    <Typography variant="h3">{!snackAmount ? 0 : Math.floor(calorieIntake / 8)} calories per snack</Typography>
+                    <h3>{!snackAmount ? 0 : Math.floor(calorieIntake / 8)} calories per snack</h3>
               </div>
             </Grid>
         </div>

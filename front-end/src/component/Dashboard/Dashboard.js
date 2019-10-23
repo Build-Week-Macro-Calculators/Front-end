@@ -64,7 +64,7 @@ console.log(time > 12 ? time - 12 : time)
                 <h3>Today's Calorie Goal</h3>
                 { !isEditing && !loading
                     ?   <div className="calorieGoal">
-                            <h1>{calorieIntake} Calories</h1>
+                            <h1><span>{calorieIntake}</span> Calories</h1>
                             <div className="goal-info">
                                 <p>Recent Weigh-In: <span>{currentUser.weight} lbs.</span></p>
                                     {currentUser.goal < 0 
