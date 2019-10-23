@@ -97,7 +97,7 @@ const Meals = ({
                     <div className='macro-div'><p>{Math.floor(carbs / mealAmount)}g <br /> Carbs</p></div>
                     <div className='macro-div'><p>{Math.floor(fat / mealAmount)}g <br /> Fat</p></div>
                   </div>
-                    <Typography variant="h3">{Math.round(calorieIntake / mealAmount)} calories per snack</Typography>
+                    <Typography variant="h3">{Math.round(calorieIntake / mealAmount)} calories per meal</Typography>
               </div>
               
               <div className='info-breakdown'>
