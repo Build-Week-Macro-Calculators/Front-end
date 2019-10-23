@@ -17,34 +17,45 @@ const initialState = {
     currentUser: {},
     loading: false,
     error: null,
-    calorieIntake: null
+    calorieIntake: null,
+    protein: null,
+    carbs: null,
+    fat: null
 }
 
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
         case FETCH_START:
+        console.log("FETCH START")
             return {
                 ...state,
                 loading: true,
                 error: null
             }
         case FETCH_SUCCESS:
-            const {weight, height, age, exerciseFrequency, goal, male} = action.payload;            
+        console.log("FETCH SUCCESS")
+            const {weight, height, age, exerciseFrequency, goal, male} = action.payload;
+            const calorieTotal = male
+                    ? Math.ceil(((66 + (6.23 * weight) + (12.7 * height) - (6.8 * age)) * exerciseFrequency) * (1 + goal))
+                    : Math.ceil(((655 + (4.35 * weight) + (4.7 * height) - (4.5 * age)) * exerciseFrequency) * (1 + goal))      
             return {
                 ...state,
                 currentUser: action.payload,
                 loading: false,
-                calorieIntake: male
-                    ? Math.ceil(((66 + (6.23 * weight) + (12.7 * height) - (6.8 * age)) * exerciseFrequency) * (1 + goal))
-                    : Math.ceil(((655 + (4.35 * weight) + (4.7 * height) - (4.5 * age)) * exerciseFrequency) * (1 + goal))
+                calorieIntake: calorieTotal,
+                protein: Math.floor(calorieTotal * 0.075),
+                carbs: Math.floor(calorieTotal * 0.1),
+                fat: Math.floor(calorieTotal * 0.033)
             }
         case FETCH_FAILURE:
+        console.log("FETCH FAILED")
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
         case LOGIN_START:
+            console.log("LOGIN BEGIN", state.loading)
             return {
                 ...state, 
                 loading: true,
@@ -52,6 +63,7 @@ export const userReducer = (state = initialState, action) => {
                 currentUser: null
             }
         case LOGIN_SUCCESS:
+            console.log("LOGIN COMPLETE")
             return {
                 ...state,
                 loading: false,

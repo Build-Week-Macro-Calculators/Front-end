@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
- const Login= ({values})=> {
+ const Login= ({ values, loading })=> {
   const classes = useStyles();
 
   return (
@@ -109,7 +109,7 @@ const useStyles = makeStyles(theme => ({
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </Button>
             <Grid container>
               <Grid item>
@@ -149,7 +149,7 @@ const FormikLogin = withFormik({
 
 const mapStateToProps = state => {
   return {
-    state: state
+    loading: state.loading
   }
 }
 
