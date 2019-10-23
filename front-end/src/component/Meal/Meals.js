@@ -12,11 +12,9 @@ import { fetchProfile } from "../../store/actions"
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginTop: 50,
-    padding: 40,
     background: '#FEEED3',
-    height: '100vh',
-    paddingTop: '100px'
+    paddingTop: '150px',
+    height: '100vh'
   },
   round: {
     margin: "10px auto",
