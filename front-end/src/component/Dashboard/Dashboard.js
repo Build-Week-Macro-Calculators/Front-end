@@ -4,6 +4,8 @@ import { connect } from "react-redux"
 import { fetchProfile, editGoals } from "../../store/actions"
 import HeaderLayout from "../HeaderLayout/HeaderLayout"
 import ReactMinimalPieChart from "react-minimal-pie-chart";
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 const Dashboard = ({ 
     currentUser,
@@ -12,7 +14,8 @@ const Dashboard = ({
     editGoals,
     protein,
     carbs,
-    fat
+    fat,
+    loading
 }) => {
 
     const [isEditing, setIsEditing] = useState(false);
@@ -58,13 +61,20 @@ console.log(time > 12 ? time - 12 : time)
         </div>
         <div className="data-display-containers">
                 <div className ="box">
-                { !isEditing 
+                { !isEditing && !loading
                     ?   <div className="calorieGoal">
                             <h3>Today's Calorie Goal</h3>
                             <h1>{calorieIntake} Calories</h1>
                             <button onClick={() => setIsEditing(true)}>Edit Your Goals</button>               
                         </div>
-                    :   <form onSubmit={saveGoals}>
+                    : !isEditing && loading
+                    ? <Loader
+                        type="TailSpin"
+                        color="#FECD6B"
+                        height={300}
+                        width={100}
+                        />
+                    : <form onSubmit={saveGoals}>
                             <label>Recent Weigh-In (lbs.):</label>
                             <input 
                                 name="weight"
@@ -88,47 +98,55 @@ console.log(time > 12 ? time - 12 : time)
                 </div>
                 <div className = "pie-chart">
                     <h3>Macro Nutrient Breakdown</h3>
-                    <ReactMinimalPieChart
-                        animate
-                        animationDuration={500}
-                        animationEasing="ease-in-out"
-                        cx={50}
-                        cy={50}
-                        data={[
-                            {
-                            color: '#f79d65',
-                            title: 'Carbs',
-                            value: carbs
-                            },
-                            {
-                            color: '#f4845f',
-                            title: 'Protein',
-                            value: protein
-                            },
-                            {
-                            color: '#f27059',
-                            title: 'Fat',
-                            value: fat
-                            }
-                        ]}
-                        label={true}
-                        labelStyle={{
-                            fontSize: '8px',
-                            fill: 'rgba(255, 255, 255, .9)'
-                        }}
-                        labelPosition={50}
-                        lengthAngle={360}
-                        lineWidth={100}
-                        onClick={undefined}
-                        onMouseOut={undefined}
-                        onMouseOver={undefined}
-                        paddingAngle={0}
-                        radius={30}
-                        ratio={1}
-                        rounded={false}
-                        startAngle={0}
-                    />
-                    <p>Protein: {protein}g Carbs: {carbs}g Fat: {fat}g</p>
+                    { !loading 
+                        ?   <><ReactMinimalPieChart
+                                animate
+                                animationDuration={500}
+                                animationEasing="ease-in-out"
+                                cx={50}
+                                cy={50}
+                                data={[
+                                    {
+                                    color: '#f79d65',
+                                    title: 'Carbs',
+                                    value: carbs
+                                    },
+                                    {
+                                    color: '#f4845f',
+                                    title: 'Protein',
+                                    value: protein
+                                    },
+                                    {
+                                    color: '#f27059',
+                                    title: 'Fat',
+                                    value: fat
+                                    }
+                                ]}
+                                label={true}
+                                labelStyle={{
+                                    fontSize: '8px',
+                                    fill: 'rgba(255, 255, 255, .9)'
+                                }}
+                                labelPosition={50}
+                                lengthAngle={360}
+                                lineWidth={100}
+                                onClick={undefined}
+                                onMouseOut={undefined}
+                                onMouseOver={undefined}
+                                paddingAngle={0}
+                                radius={30}
+                                ratio={1}
+                                rounded={false}
+                                startAngle={0}
+                            />
+                            <p>Protein: {protein}g Carbs: {carbs}g Fat: {fat}g</p></>
+                        : <Loader
+                            type="TailSpin"
+                            color="#FECD6B"
+                            height={300}
+                            width={100}
+                        /> 
+                            } 
                 </div>
             </div>
         </div>

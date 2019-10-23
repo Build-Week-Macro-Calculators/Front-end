@@ -21,3 +21,22 @@
 .sign-up-copyright {
     padding-bottom: 30px;
 }
+
+ul {
+    padding: -20px 0 !important;
+    background: #FEE8BD !important;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #f25c54;
+  }

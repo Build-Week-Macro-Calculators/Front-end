@@ -15,6 +15,9 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import { connect } from "react-redux"
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+
 
 import "./Login.scss"
 import { login, fetchProfile } from "../../store/actions"
@@ -109,8 +112,18 @@ const useStyles = makeStyles(theme => ({
               color="primary"
               className={classes.submit}
             >
-              {loading ? 'Signing In...' : 'Sign In'}
+              {!loading 
+                ? 'Sign Up' 
+                : <Loader
+                    type="ThreeDots"
+                    color="#FEE88D"
+                    height={15}
+                    width={50}
+                  />}
             </Button>
+            
+            
+            
             <Grid container>
               <Link to="/SignUp" className="sign-up-link">
                   {"Don't have an account?"}

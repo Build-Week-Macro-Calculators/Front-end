@@ -18,6 +18,8 @@ import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { connect } from "react-redux"
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 import { register } from "../../store/actions"
 import "./SignUp.scss"
@@ -63,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
-  }
+  },
 }));
 
 const SignUp = ({ values, loading }) => {
@@ -213,15 +215,21 @@ const SignUp = ({ values, loading }) => {
                   <MenuItem value={false}>Female</MenuItem>
                 </Field>
             </MuiPickersUtilsProvider>
-
+           
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
               className={classes.submit}
             >
-              {loading ? 'Signing In...' : 'Sign Up'}
+              {!loading 
+                ? 'Sign Up' 
+                : <Loader
+                    type="ThreeDots"
+                    color="#FECD6B"
+                    height={15}
+                    width={50}
+                  />}
             </Button>
             <Grid container>
                 <Link to="/" className="sign-up-link">
