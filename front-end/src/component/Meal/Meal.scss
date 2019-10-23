@@ -85,9 +85,10 @@
 
                 .macro-div {
                     background: #5c5c5c;
-                    width: 25%;
-                    border-radius: 3px;
+                    width: 20%;
+                    border-radius: 50%;
                     color: white;
+                    box-shadow: 3px 3px 6px rgba(0, 0, 0, .8);
                     text-shadow: 1px 1px 1px black;
                 }
             }
