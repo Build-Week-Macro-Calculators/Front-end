@@ -29,6 +29,11 @@ function Copyright() {
           Macro Calculator
         </Link>{' '}
         {new Date().getFullYear()}
+        <br/>
+        {"Image Credit:"}
+        <Link to="https://unsplash.com/@brookelark">
+          {" Brooke Lark"}
+        </Link>
       </Typography>
     );
   }

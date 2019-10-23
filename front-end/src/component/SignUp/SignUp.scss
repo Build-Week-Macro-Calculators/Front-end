@@ -1,0 +1,23 @@
+.sign-up-header {
+    padding-top: 20px;
+}
+
+.sign-up-spacer {
+    height: 40px;
+}
+
+.signup-input { 
+    width: 100%;
+    border-radius: 5px;
+    height: 75px;
+
+    p.Mui-error  {
+        margin-top: 10px;
+        text-align: left;
+        letter-spacing: 1px;
+    }
+}
+
+.sign-up-copyright {
+    padding-bottom: 30px;
+}
