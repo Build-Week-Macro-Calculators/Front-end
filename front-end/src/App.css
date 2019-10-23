@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   height: 100vh;
+  margin: 50px;
+  background: #09d3ac;
 }
 
 .App-logo {
@@ -51,3 +53,7 @@
 .MuiSelect-select{
   width: 40px
 }
+.ade{
+  margin: 0 auto;
+}
+

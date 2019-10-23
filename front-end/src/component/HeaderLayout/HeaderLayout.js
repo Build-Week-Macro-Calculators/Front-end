@@ -4,17 +4,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { pink } from '@material-ui/core/colors';
 import { connect } from "react-redux"
-import { datePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
-
-import history from "../history"
+import "./HeaderLayout.css";
+import history from "../../history"
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    paddingBottom: '150px'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -27,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 const HeaderLayout = props => {
   const classes = useStyles();
-
+  
   const logout = () => {
     localStorage.removeItem('token');
     history.push("/")
@@ -36,7 +33,7 @@ const HeaderLayout = props => {
     return(
       <div className="header">
       <div className={classes.root}>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className="navStyle">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
               Macro Calculator

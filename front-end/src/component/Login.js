@@ -14,10 +14,9 @@ import { Link } from "react-router-dom";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
-import axios from "axios";
 import { connect } from "react-redux"
 
-import { login } from "../store/actions"
+import { login, fetchProfile } from "../store/actions"
 
 
 
@@ -25,7 +24,7 @@ function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
-        <Link color="inherit" href="#">
+        <Link color="inherit" href="#" to="/dashboard">
           Macros Calculator
         </Link>{' '}
         {new Date().getFullYear()}
@@ -63,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
- const Login= ({values})=> {
+ const Login= ({ values, loading })=> {
   const classes = useStyles();
 
   return (
@@ -110,17 +109,12 @@ const useStyles = makeStyles(theme => ({
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link to="/ForgetPassword" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
-                <Link to="/SignUp" variant="body2">
-                  {"Don't have an account? Sign Up"}
+              <Link to="/SignUp" variant="body2">
+                  {"Don't have an account?"}
                 </Link>
               </Grid>
             </Grid>
@@ -147,20 +141,17 @@ const FormikLogin = withFormik({
     password: Yup.string().required("Please enter password")
   }),
 
-  //You can use this to see the values
   handleSubmit(values, {resetForm, ...rest} ) {
     rest.props.login(values);
   }
+
 })(Login);
 
-console.log("This is the HOC", FormikLogin);
-
 const mapStateToProps = state => {
-  console.log(state)
   return {
-    state: state
+    loading: state.loading
   }
 }
 
-export default connect(mapStateToProps, {login})(FormikLogin);
+export default connect(mapStateToProps, {login, fetchProfile })(FormikLogin);
 
