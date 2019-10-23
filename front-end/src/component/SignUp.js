@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SignUp = ({ values }) => {
+const SignUp = ({ values, loading }) => {
   const classes = useStyles();
   return (
     <Grid container component="main" className={classes.root}>
@@ -228,12 +228,12 @@ const SignUp = ({ values }) => {
               color="primary"
               className={classes.submit}
             >
-              Sign Up
+              {loading ? 'Signing In...' : 'Sign Up'}
             </Button>
             <Grid container>
               <Grid item>
                 <Link to="/" variant="body2">
-                  {"Already have an account? Sign In"}
+                  {"Already have an account?"}
                 </Link>
               </Grid>
             </Grid>
@@ -282,7 +282,7 @@ const FormikSignUp = withFormik({
 const mapStateToProps = state => {
   console.log(state)
   return {
-    state: state
+    loading: state.loading
   }
 }
 

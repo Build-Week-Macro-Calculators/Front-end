@@ -16,7 +16,7 @@ import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import { connect } from "react-redux"
 
-import { login } from "../store/actions"
+import { login, fetchProfile } from "../store/actions"
 
 
 
@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
- const Login= ({values})=> {
+ const Login= ({ values, loading })=> {
   const classes = useStyles();
 
   return (
@@ -109,7 +109,7 @@ const useStyles = makeStyles(theme => ({
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </Button>
             <Grid container>
               <Grid item>
@@ -149,9 +149,9 @@ const FormikLogin = withFormik({
 
 const mapStateToProps = state => {
   return {
-    state: state
+    loading: state.loading
   }
 }
 
-export default connect(mapStateToProps, {login})(FormikLogin);
+export default connect(mapStateToProps, {login, fetchProfile })(FormikLogin);
 

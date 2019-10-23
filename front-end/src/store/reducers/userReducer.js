@@ -5,17 +5,57 @@ import {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
+    FETCH_START,
+    FETCH_SUCCESS,
+    FETCH_FAILURE,
+    EDITING_START,
+    EDITING_SUCCESS,
+    EDITNG_FAILURE
 } from "../actions"
 
 const initialState = {
-    currentUser: null,
+    currentUser: {},
     loading: false,
-    error: null
+    error: null,
+    calorieIntake: null,
+    protein: null,
+    carbs: null,
+    fat: null
 }
 
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
+        case FETCH_START:
+        console.log("FETCH START")
+            return {
+                ...state,
+                loading: true,
+                error: null
+            }
+        case FETCH_SUCCESS:
+        console.log("FETCH SUCCESS")
+            const {weight, height, age, exerciseFrequency, goal, male} = action.payload;
+            const calorieTotal = male
+                    ? Math.ceil(((66 + (6.23 * weight) + (12.7 * height) - (6.8 * age)) * exerciseFrequency) * (1 + goal))
+                    : Math.ceil(((655 + (4.35 * weight) + (4.7 * height) - (4.5 * age)) * exerciseFrequency) * (1 + goal))      
+            return {
+                ...state,
+                currentUser: action.payload,
+                loading: false,
+                calorieIntake: calorieTotal,
+                protein: Math.floor(calorieTotal * 0.075),
+                carbs: Math.floor(calorieTotal * 0.1),
+                fat: Math.floor(calorieTotal * 0.033)
+            }
+        case FETCH_FAILURE:
+        console.log("FETCH FAILED")
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
         case LOGIN_START:
+            console.log("LOGIN BEGIN", state.loading)
             return {
                 ...state, 
                 loading: true,
@@ -23,6 +63,7 @@ export const userReducer = (state = initialState, action) => {
                 currentUser: null
             }
         case LOGIN_SUCCESS:
+            console.log("LOGIN COMPLETE")
             return {
                 ...state,
                 loading: false,
@@ -44,8 +85,8 @@ export const userReducer = (state = initialState, action) => {
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                currentUser: action.payload.user,
-                loading: false
+                currentUser: action.payload,
+                loading: false,
             }
         case REGISTER_FAILURE:
             return {
@@ -53,6 +94,27 @@ export const userReducer = (state = initialState, action) => {
                 error: action.payload,
                 loading: false
             }
+        case EDITING_START: 
+        console.log('LOADING STARTED')
+            return {
+                ...state,
+                loading: true,
+                error: ''
+            }
+        case EDITING_SUCCESS: 
+        console.log('LOADING COMPLETE')
+            return {
+                ...state,
+                loading: false,
+                currentUser: action.payload
+            }
+        case EDITNG_FAILURE: 
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+
         default:
             return state;
 
