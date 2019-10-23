@@ -61,17 +61,25 @@ console.log(time > 12 ? time - 12 : time)
         </div>
         <div className="data-display-containers">
                 <div className ="box">
+                <h3>Today's Calorie Goal</h3>
                 { !isEditing && !loading
                     ?   <div className="calorieGoal">
-                            <h3>Today's Calorie Goal</h3>
                             <h1>{calorieIntake} Calories</h1>
+                            <div className="goal-info">
+                                <p>Recent Weigh-In: <span>{currentUser.weight} lbs.</span></p>
+                                    {currentUser.goal < 0 
+                                    ? <p>You're consuming a <span>{currentUser.goal * 100}%</span> calorie deficit.</p>
+                                    : currentUser.goal === 0 
+                                    ? <p>Maintaining your weight of <span>{currentUser.weight} lbs.</span></p>
+                                    : <p>You're consuming a <span>{currentUser.goal * 100}%</span> calorie surplus.</p>}   
+                            </div>
                             <button onClick={() => setIsEditing(true)}>Edit Your Goals</button>               
                         </div>
                     : !isEditing && loading
                     ? <Loader
                         type="TailSpin"
                         color="#FECD6B"
-                        height={300}
+                        height={150}
                         width={100}
                         />
                     : <form onSubmit={saveGoals}>
@@ -139,7 +147,11 @@ console.log(time > 12 ? time - 12 : time)
                                 rounded={false}
                                 startAngle={0}
                             />
-                            <p>Protein: {protein}g Carbs: {carbs}g Fat: {fat}g</p></>
+                            <p>
+                                <span style={{color: "#f4845f"}}> Protein: </span> {protein}g  
+                                <span style={{color: "#f7b267"}}> Carbs: </span> {carbs}g  
+                                <span style={{color: "#f25c54"}}> Fat: </span> {fat}g 
+                            </p></>
                         : <Loader
                             type="TailSpin"
                             color="#FECD6B"
