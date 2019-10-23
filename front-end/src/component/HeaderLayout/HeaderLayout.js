@@ -11,6 +11,7 @@ import history from "../../history"
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    paddingBottom: '150px'
   },
   menuButton: {
     marginRight: theme.spacing(2),

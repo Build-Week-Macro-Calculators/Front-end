@@ -13,13 +13,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     background: '#FEEED3',
-    paddingTop: '150px',
-    height: '100vh'
+    height: '100vh',
   },
-  round: {
-    margin: "10px auto",
-    width: 200,
-  }
 }));
 
 const Meals = ({ 
