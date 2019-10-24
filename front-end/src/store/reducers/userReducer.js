@@ -74,12 +74,11 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
                 error: null,
-                currentUser: null
+                currentUser: {}
             }
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                currentUser: action.payload,
                 loading: false,
             }
         case REGISTER_FAILURE:
