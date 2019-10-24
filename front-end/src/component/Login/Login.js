@@ -103,7 +103,7 @@ const Login= ({ values, loading })=> {
               disabled={loading}
               >
               {!loading 
-                ? 'Sign Up' 
+                ? 'Sign In' 
                 : <Loader
                 type="ThreeDots"
                 color="#FEE88D"
