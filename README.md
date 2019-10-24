@@ -18,7 +18,7 @@ Users can:
 In order to view the project on your local machine, follow these steps:
 - **Fork** the repository
 - **Clone** or **Download** the project onto your local machine
-- `cd` into `front-end` directory. By then it should look like `/yourSystemDirectories/Front-End/front-end`
+- `cd` into `front-end` directory. By then it should look like `/yourSystemDirectories/Front-end/front-end`
 - Ensure you install all dependencies
 - Run the app with `npm start` or `yarn run`.
 
