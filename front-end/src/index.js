@@ -7,6 +7,7 @@ import { Router } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import { Provider } from "react-redux"
+
 import { userReducer } from "./store/reducers"
 import history from "./history"
 

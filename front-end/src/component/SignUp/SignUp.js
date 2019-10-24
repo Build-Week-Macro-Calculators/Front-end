@@ -1,18 +1,13 @@
 import "date-fns";
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
 import MenuItem from "@material-ui/core/MenuItem";
-import clsx from "clsx";
 import { Link } from "react-router-dom";
-import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
@@ -48,9 +43,13 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2)
   },
+  input: {
+    color: '#515151 !important',
+    borderColor: '#515151 !important'
+  }
 }));
 
-const SignUp = ({ values, loading }) => {
+const SignUp = ({ values, loading, error, isSubmitting }) => {
   const classes = useStyles();
   return (
     <Grid container component="main" className={classes.root}>
@@ -72,6 +71,11 @@ const SignUp = ({ values, loading }) => {
               label="Username"
               name="username"
               autoFocus
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
               />
             <Field className='signup-input'
               component={TextField}
@@ -84,6 +88,11 @@ const SignUp = ({ values, loading }) => {
               type="password"
               id="password"
               autoComplete="current-password"
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
               />
               <Field
                 className='signup-input'
@@ -197,12 +206,12 @@ const SignUp = ({ values, loading }) => {
                   <MenuItem value={false}>Female</MenuItem>
                 </Field>
             </MuiPickersUtilsProvider>
-           
             <Button
               type="submit"
               fullWidth
               variant="contained"
               className={classes.submit}
+              disabled={loading}
               >
               {!loading 
                 ? 'Sign Up' 
@@ -256,6 +265,7 @@ const FormikSignUp = withFormik({
   //You can use this to see the values
   handleSubmit(values, {resetForm, ...rest}) {
     rest.props.register(values);
+    resetForm();
   }
   
 })(SignUp);
@@ -263,7 +273,8 @@ const FormikSignUp = withFormik({
 const mapStateToProps = state => {
   console.log(state)
   return {
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
   }
 }
 

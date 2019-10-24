@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Macro Calculator
+The goal of Macro Calculator is to calculate the user's expected calorie intake specific to their body. 
 
-## Available Scripts
+The deployed version of the project can be seen at: <a href="https://macro-nutrient-calculator.netlify.com/">Macro Calculator.</a>
 
-In the project directory, you can run:
+## Motivation
+When it comes to losing or gaining weight, a lot of individuals are unsure where to start in the process. Macro Calculator aims to _"take the guessing out of nutrition"_ by providing the user with estimated nutrition guidelines.
 
-### `npm start`
+## Features
+Macro Calculator provides an estimated goal for the user's daily calorie intake, as well as the macronutrient break down of those calories. The user also has the ability to view different ways to spread out their calories through the day by: _3 meals_, _4 meals_, or _3 meals and 2 snacks_.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Users can:
+- Create a new account, which calculates their estimated calorie intake through the onboarding process
+- View the dashboard where they can view their calorie goal, macronutrient breakdown of those calories, and edit their current weight or nutrition goal (Switching from _Weight Maintenance_, to _Moderate Weight Gain_)
+- Visit the meals page to view how their calories will be divided up if choosing 3 meals, 4 meals, or 3 meals and 2 snacks.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Getting Started
+In order to view the project on your local machine, follow these steps:
+- **Fork** the repository
+- **Clone** or **Download** the project onto your local machine
+- Ensure you install all dependencies
+- Run the app with `npm start` or `yarn run`.
 
-### `npm test`
+## Technologies Used
+- React.js
+- Redux
+- Axios
+- Material UI
+- Formik
+- SASS
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
+This was a school project built for <a href="">Lambda School</a>.
 
-### `npm run build`
+Front-end portion of the project built by <a href="https://github.com/dylanmestyanek">Dylan Mestyanek</a>, <a href="https://github.com/Joshua-Edgerton">Joshua Edgerton</a>, and <a href="https://github.com/adelaadeoye">Adeoye Adela</a>.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Application Screen Shots
+Here's a sneak peak into the application!
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Dashboard
+<img src="./src/images/Dashboard.png">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Meals
+<img src="./src/images/Meals.png">
 
-### `npm run eject`
+## Sign In
+<img src="./src/images/login.png">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Sign Up
+<img src="./src/images/register.png">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
