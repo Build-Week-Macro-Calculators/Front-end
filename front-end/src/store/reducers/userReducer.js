@@ -56,7 +56,7 @@ export const userReducer = (state = initialState, action) => {
                 ...state, 
                 loading: true,
                 error: null,
-                currentUser: null
+                currentUser: {}
             }
         case LOGIN_SUCCESS:
             return {

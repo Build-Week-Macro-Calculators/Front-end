@@ -38,6 +38,10 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  input: {
+    color: 'grey !important',
+    borderColor: 'grey !important'
   }
 }));
 
@@ -68,6 +72,11 @@ const Login= ({ values, loading })=> {
               name="username"
               autoComplete="username"
               autoFocus
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
               />
             <Field className='form-input'
               component={TextField}
@@ -79,6 +88,11 @@ const Login= ({ values, loading })=> {
               type="password"
               id="password"
               autoComplete="current-password"
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
               />
             <Button
               type="submit"

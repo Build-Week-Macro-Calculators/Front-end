@@ -43,6 +43,10 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2)
   },
+  input: {
+    color: '#515151 !important',
+    borderColor: '#515151 !important'
+  }
 }));
 
 const SignUp = ({ values, loading, error, isSubmitting }) => {
@@ -67,6 +71,11 @@ const SignUp = ({ values, loading, error, isSubmitting }) => {
               label="Username"
               name="username"
               autoFocus
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
               />
             <Field className='signup-input'
               component={TextField}
@@ -79,6 +88,11 @@ const SignUp = ({ values, loading, error, isSubmitting }) => {
               type="password"
               id="password"
               autoComplete="current-password"
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
               />
               <Field
                 className='signup-input'

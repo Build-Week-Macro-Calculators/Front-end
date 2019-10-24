@@ -22,7 +22,7 @@ const Dashboard = ({
     const [time] = useState(new Date().getHours())
     const [newInfo, setNewInfo] = useState({
         goal: 0,
-        weight: currentUser.weight ? currentUser.weight : ''
+        weight: ''
     })
 
     const saveGoals = e => {
