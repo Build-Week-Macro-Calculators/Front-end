@@ -38,16 +38,16 @@ Front-end portion of the project built by <a href="https://github.com/dylanmesty
 Here's a sneak peak into the application!
 
 ## Dashboard
-<img src="./src/images/Dashboard.png">
+<img src="./images/Dashboard.png">
 
 ## Meals
-<img src="./src/images/Meals.png">
+<img src="./images/Meals.png">
 
 ## Sign In
-<img src="./src/images/login.png">
+<img src="./images/login.png">
 
 ## Sign Up
-<img src="./src/images/register.png">
+<img src="./images/register.png">
 
 
 
