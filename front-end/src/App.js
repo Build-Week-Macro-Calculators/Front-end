@@ -3,8 +3,8 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import { Provider } from "react-redux"
 import { store } from "./index"
-import SignUp from "./component/SignUp";
-import Login from "./component/Login";
+import SignUp from "./component/SignUp/SignUp"
+import Login from "./component/Login/Login";
 import Dashboard from "./component/Dashboard/Dashboard"
 import Meals from "./component/Meal/Meals"
 import { PrivateRoute } from "./component/PrivateRoute"
