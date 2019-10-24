@@ -3,12 +3,9 @@ import "./Dashboard.scss"
 import { connect } from "react-redux"
 import { fetchProfile, editGoals } from "../../store/actions"
 import HeaderLayout from "../HeaderLayout/HeaderLayout"
-import ReactMinimalPieChart from "react-minimal-pie-chart";
 import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import { Pie } from "react-chartjs-2"
-
-import { axiosWithAuth } from "../../utils/axiosWithAuth"
 
 const Dashboard = ({ 
     currentUser,
@@ -22,7 +19,7 @@ const Dashboard = ({
 }) => {
 
     const [isEditing, setIsEditing] = useState(false);
-    const [time, setTime] = useState(new Date().getHours())
+    const [time] = useState(new Date().getHours())
     const [newInfo, setNewInfo] = useState({
         goal: 0,
         weight: currentUser.weight ? currentUser.weight : ''
@@ -40,7 +37,7 @@ const Dashboard = ({
             ...newInfo,
             weight: currentUser.weight
         })
-    }, [currentUser.weight, currentUser.goal])
+    }, [currentUser.weight, currentUser.goal, fetchProfile])
 
 
     const handleChange = e => {
@@ -163,7 +160,6 @@ const Dashboard = ({
 };
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         currentUser: state.currentUser,
         loading: state.loading,

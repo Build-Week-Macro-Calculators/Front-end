@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { connect } from "react-redux"
 import { Bar } from "react-chartjs-2"
 
@@ -37,7 +36,7 @@ const Meals = ({
 
   useEffect(() => {
     fetchProfile();
-  }, [])
+  }, [fetchProfile])
 
   return (
     <div className={classes.root}>
@@ -221,7 +220,6 @@ const Meals = ({
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     currentUser: state.currentUser,
     calorieIntake: state.calorieIntake,
