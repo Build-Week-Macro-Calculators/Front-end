@@ -18,29 +18,10 @@ import { connect } from "react-redux"
 import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
-
 import "./Login.scss"
 import { login, fetchProfile } from "../../store/actions"
 
 
-
-function Copyright() {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="#" to="/dashboard">
-          Macro Calculator
-        </Link>{' '}
-        {new Date().getFullYear()}
-        <br/>
-        {"Image Credit:"}
-        <Link to="https://unsplash.com/@brookelark">
-          {" Brooke Lark"}
-        </Link>
-      </Typography>
-    );
-  }
- 
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
@@ -66,9 +47,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
- const Login= ({ values, loading })=> {
+const Login= ({ values, loading })=> {
   const classes = useStyles();
-
+  
   return (
     <Grid container component="main" className={classes.root}>
       <Grid sm={4} md={7} className={classes.image} />
@@ -93,7 +74,7 @@ const useStyles = makeStyles(theme => ({
               name="username"
               autoComplete="username"
               autoFocus
-            />
+              />
             <Field className='form-input'
               component={TextField}
               variant="outlined"
@@ -104,26 +85,23 @@ const useStyles = makeStyles(theme => ({
               type="password"
               id="password"
               autoComplete="current-password"
-            />
+              />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-            >
+              >
               {!loading 
                 ? 'Sign Up' 
                 : <Loader
-                    type="ThreeDots"
-                    color="#FEE88D"
-                    height={15}
-                    width={50}
-                  />}
+                type="ThreeDots"
+                color="#FEE88D"
+                height={15}
+                width={50}
+                />}
             </Button>
-            
-            
-            
             <Grid container>
               <Link to="/SignUp" className="sign-up-link">
                   {"Don't have an account?"}
@@ -151,11 +129,11 @@ const FormikLogin = withFormik({
     username: Yup.string().required("Username required"),
     password: Yup.string().required("Please enter password")
   }),
-
+  
   handleSubmit(values, {resetForm, ...rest} ) {
     rest.props.login(values);
   }
-
+  
 })(Login);
 
 const mapStateToProps = state => {
@@ -166,3 +144,21 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {login, fetchProfile })(FormikLogin);
 
+function Copyright() {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="#" to="/dashboard">
+          Macro Calculator
+        </Link>{' '}
+        {new Date().getFullYear()}
+        <br/>
+        {"Image Credit:"}
+        <Link to="https://unsplash.com/@brookelark">
+          {" Brooke Lark"}
+        </Link>
+      </Typography>
+    );
+  }
+
+  

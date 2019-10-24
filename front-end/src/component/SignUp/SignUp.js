@@ -24,24 +24,6 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import { register } from "../../store/actions"
 import "./SignUp.scss"
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center" className="sign-up-copyright">
-      {"Copyright © "}
-      <Link color="inherit" href="#" to="/dashboard">
-        Macros Calculator
-      </Link>{" "}
-      {new Date().getFullYear()}
-      <br/>
-      {"Image Credit:"}
-      <Link to="https://unsplash.com/@brookelark">
-        {" Brooke Lark"}
-      </Link>
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles(theme => ({
   root: {
     height: "100vh"
@@ -49,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   image: {
     backgroundImage:
       "url(https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=931&q=80)",
-    backgroundRepeat: "no-repeat",
+      backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "left"
   },
@@ -90,7 +72,7 @@ const SignUp = ({ values, loading }) => {
               label="Username"
               name="username"
               autoFocus
-            />
+              />
             <Field className='signup-input'
               component={TextField}
               variant="outlined"
@@ -102,7 +84,7 @@ const SignUp = ({ values, loading }) => {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
+              />
               <Field
                 className='signup-input'
                 component={TextField}
@@ -111,7 +93,7 @@ const SignUp = ({ values, loading }) => {
                 name="weight"
                 label="Weight (lbs)"
                 type="number"
-              />
+                />
               <Field
                 className='signup-input dropdown'
                 component={TextField}
@@ -167,7 +149,7 @@ const SignUp = ({ values, loading }) => {
                 name="exerciseFrequency"
                 label="Activity Level"
                 value={values.weightRange}
-              >
+                >
                 <MenuItem value={1.2}>0 days</MenuItem>
                 <MenuItem value={1.375}>1-2 days</MenuItem>
                 <MenuItem value={1.55}>3-4 days</MenuItem>
@@ -182,7 +164,7 @@ const SignUp = ({ values, loading }) => {
                 name="goal"
                 label="Goal"
                 value={values.weightRange}
-              >
+                >
                 <MenuItem value={-.20}>Aggressive Weight Loss</MenuItem>
                 <MenuItem value={-.15}>Moderate Weight Loss</MenuItem>
                 <MenuItem value={-.10}>Deficit Weight Loss</MenuItem>
@@ -221,7 +203,7 @@ const SignUp = ({ values, loading }) => {
               fullWidth
               variant="contained"
               className={classes.submit}
-            >
+              >
               {!loading 
                 ? 'Sign Up' 
                 : <Loader
@@ -275,7 +257,7 @@ const FormikSignUp = withFormik({
   handleSubmit(values, {resetForm, ...rest}) {
     rest.props.register(values);
   }
-
+  
 })(SignUp);
 
 const mapStateToProps = state => {
@@ -286,3 +268,20 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {register})(FormikSignUp);
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center" className="sign-up-copyright">
+      {"Copyright © "}
+      <Link color="inherit" href="#" to="/dashboard">
+        Macros Calculator
+      </Link>{" "}
+      {new Date().getFullYear()}
+      <br/>
+      {"Image Credit:"}
+      <Link to="https://unsplash.com/@brookelark">
+        {" Brooke Lark"}
+      </Link>
+    </Typography>
+  );
+}
