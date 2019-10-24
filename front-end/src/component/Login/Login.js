@@ -15,30 +15,19 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import { connect } from "react-redux"
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
-import { login, fetchProfile } from "../store/actions"
+import "./Login.scss"
+import { login, fetchProfile } from "../../store/actions"
 
 
-
-function Copyright() {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="#" to="/dashboard">
-          Macros Calculator
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
- 
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://images.pexels.com/photos/1488031/pexels-photo-1488031.jpeg?cs=srgb&dl=antioxidant-berry-beverage-1488031.jpg&fm=jpg)',
+    backgroundImage: 'url(https://images.unsplash.com/photo-1478144592103-25e218a04891?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=968&q=80)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -49,36 +38,34 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  },
+  }
 }));
 
- const Login= ({ values, loading })=> {
+const Login= ({ values, loading })=> {
   const classes = useStyles();
-
+  
   return (
     <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+      <Grid sm={4} md={7} className={classes.image} />
+      <Grid md={5} elevation={6}>
+        <div className='form-container'>
+          <div className='spacer'></div>
           <Typography component="h1" variant="h5">
+            Macro Calculator
+          </Typography>
+          <em><p>Taking the guessing out of nutrition</p></em>
+          <Typography component="h2" variant="h5">
             Sign in
           </Typography>
           <Form className={classes.form} noValidate>
-            <Field component={TextField}
+            <Field className='form-input' 
+              component={TextField}
               variant="outlined"
               margin="normal"
               fullWidth
@@ -87,8 +74,9 @@ const useStyles = makeStyles(theme => ({
               name="username"
               autoComplete="username"
               autoFocus
-            />
-            <Field component={TextField}
+              />
+            <Field className='form-input'
+              component={TextField}
               variant="outlined"
               margin="normal"
               fullWidth
@@ -97,26 +85,27 @@ const useStyles = makeStyles(theme => ({
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+              />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-            >
-              {loading ? 'Signing In...' : 'Sign In'}
+              >
+              {!loading 
+                ? 'Sign Up' 
+                : <Loader
+                type="ThreeDots"
+                color="#FEE88D"
+                height={15}
+                width={50}
+                />}
             </Button>
             <Grid container>
-              <Grid item>
-              <Link to="/SignUp" variant="body2">
+              <Link to="/SignUp" className="sign-up-link">
                   {"Don't have an account?"}
                 </Link>
-              </Grid>
             </Grid>
             <Box mt={5}>
               <Copyright />
@@ -140,11 +129,11 @@ const FormikLogin = withFormik({
     username: Yup.string().required("Username required"),
     password: Yup.string().required("Please enter password")
   }),
-
+  
   handleSubmit(values, {resetForm, ...rest} ) {
     rest.props.login(values);
   }
-
+  
 })(Login);
 
 const mapStateToProps = state => {
@@ -155,3 +144,21 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {login, fetchProfile })(FormikLogin);
 
+function Copyright() {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="#" to="/dashboard">
+          Macro Calculator
+        </Link>{' '}
+        {new Date().getFullYear()}
+        <br/>
+        {"Image Credit:"}
+        <Link to="https://unsplash.com/@brookelark">
+          {" Brooke Lark"}
+        </Link>
+      </Typography>
+    );
+  }
+
+  

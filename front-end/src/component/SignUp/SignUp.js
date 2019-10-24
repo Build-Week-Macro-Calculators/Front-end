@@ -16,26 +16,13 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
- 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-
 import { connect } from "react-redux"
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
-import { register } from "../store/actions"
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="#" to="/dashboard">
-        Macros Calculator
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { register } from "../../store/actions"
+import "./SignUp.scss"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,10 +30,10 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     backgroundImage:
-      "url(https://images.pexels.com/photos/1268478/pexels-photo-1268478.jpeg?cs=srgb&dl=antioxidant-berries-beverage-1268478.jpg&fm=jpg)",
-    backgroundRepeat: "no-repeat",
+      "url(https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=931&q=80)",
+      backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    backgroundPosition: "center"
+    backgroundPosition: "left"
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -54,35 +41,29 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center"
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
-  },
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1)
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
-  }
+  },
 }));
 
 const SignUp = ({ values, loading }) => {
   const classes = useStyles();
   return (
     <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <AssignmentIndIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            On Boarding
+      <Grid sm={4} md={7} className={classes.image} />
+      <Grid md={5} elevation={6} square>
+        <div className='form-container'>
+        <div className='sign-up-spacer'></div>
+        <Typography component="h1" variant="h5">
+            Macro Calculator
           </Typography>
+          <em><p>Create an account:</p></em>
           <Form className={classes.form} noValidate>
-            <Field
+            <Field className='signup-input'
               component={TextField}
               variant="outlined"
               margin="normal"
@@ -91,8 +72,8 @@ const SignUp = ({ values, loading }) => {
               label="Username"
               name="username"
               autoFocus
-            />
-            <Field
+              />
+            <Field className='signup-input'
               component={TextField}
               variant="outlined"
               margin="normal"
@@ -103,23 +84,23 @@ const SignUp = ({ values, loading }) => {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <Grid container justify={"space-between"}>
+              />
               <Field
+                className='signup-input'
                 component={TextField}
                 margin="normal"
                 fullWidth
                 name="weight"
                 label="Weight (lbs)"
                 type="number"
-              />
+                />
               <Field
+                className='signup-input dropdown'
                 component={TextField}
                 fullWidth
                 select
                 name="height"
                 label="Height"
-                className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
               >
                 <MenuItem value={48}>4' 0"</MenuItem>
@@ -161,14 +142,14 @@ const SignUp = ({ values, loading }) => {
                 <MenuItem value={84}>7' 0"</MenuItem>
               </Field>
               <Field
+                className='signup-input'
                 component={TextField}
                 fullWidth
                 select
                 name="exerciseFrequency"
                 label="Activity Level"
-                className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
-              >
+                >
                 <MenuItem value={1.2}>0 days</MenuItem>
                 <MenuItem value={1.375}>1-2 days</MenuItem>
                 <MenuItem value={1.55}>3-4 days</MenuItem>
@@ -176,15 +157,14 @@ const SignUp = ({ values, loading }) => {
                 <MenuItem value={1.9}>7 days</MenuItem>
               </Field>
               <Field
+                className='signup-input'
                 component={TextField}
                 fullWidth
                 select
                 name="goal"
                 label="Goal"
-                className={clsx(classes.margin, classes.textField)}
                 value={values.weightRange}
-              >
-
+                >
                 <MenuItem value={-.20}>Aggressive Weight Loss</MenuItem>
                 <MenuItem value={-.15}>Moderate Weight Loss</MenuItem>
                 <MenuItem value={-.10}>Deficit Weight Loss</MenuItem>
@@ -192,50 +172,51 @@ const SignUp = ({ values, loading }) => {
                 <MenuItem value={.10}>Moderate Weight Gain</MenuItem>
                 <MenuItem value={.15}>Aggressive Weight Gain</MenuItem>
               </Field>
-            </Grid>
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify={"space-between"}>
                 <Field component={ TextField}
+                  className='signup-input'
                   id="date"
                   label="Age"
                   type="number"
                   name="age"
                   fullWidth
-                  className={classes.textField}
                 />
                 <Field
+                  className='signup-input'
                   component={TextField}
                   fullWidth
                   select
                   name="male"
                   label="Gender"
                   placeholder="Male/Female"
-                  className={clsx(classes.margin, classes.textField)}
                   value={values.weightRange}
                 >
 
                   <MenuItem value={true}>Male</MenuItem>
                   <MenuItem value={false}>Female</MenuItem>
                 </Field>
-              </Grid>
             </MuiPickersUtilsProvider>
-
+           
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
               className={classes.submit}
-            >
-              {loading ? 'Signing In...' : 'Sign Up'}
+              >
+              {!loading 
+                ? 'Sign Up' 
+                : <Loader
+                    type="ThreeDots"
+                    color="#FECD6B"
+                    height={15}
+                    width={50}
+                  />}
             </Button>
             <Grid container>
-              <Grid item>
-                <Link to="/" variant="body2">
+                <Link to="/" className="sign-up-link">
                   {"Already have an account?"}
                 </Link>
-              </Grid>
             </Grid>
             <Box mt={5}>
               <Copyright />
@@ -276,7 +257,7 @@ const FormikSignUp = withFormik({
   handleSubmit(values, {resetForm, ...rest}) {
     rest.props.register(values);
   }
-
+  
 })(SignUp);
 
 const mapStateToProps = state => {
@@ -287,3 +268,20 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {register})(FormikSignUp);
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center" className="sign-up-copyright">
+      {"Copyright © "}
+      <Link color="inherit" href="#" to="/dashboard">
+        Macros Calculator
+      </Link>{" "}
+      {new Date().getFullYear()}
+      <br/>
+      {"Image Credit:"}
+      <Link to="https://unsplash.com/@brookelark">
+        {" Brooke Lark"}
+      </Link>
+    </Typography>
+  );
+}
