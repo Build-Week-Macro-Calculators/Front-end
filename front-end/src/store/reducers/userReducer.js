@@ -26,14 +26,12 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
         case FETCH_START:
-        console.log("FETCH START")
             return {
                 ...state,
                 loading: true,
                 error: null
             }
         case FETCH_SUCCESS:
-        console.log("FETCH SUCCESS")
             const {weight, height, age, exerciseFrequency, goal, male} = action.payload;
             const calorieTotal = male
                     ? Math.ceil(((66 + (6.23 * weight) + (12.7 * height) - (6.8 * age)) * exerciseFrequency) * (1 + goal))
@@ -48,14 +46,12 @@ export const userReducer = (state = initialState, action) => {
                 fat: Math.floor(calorieTotal * 0.033)
             }
         case FETCH_FAILURE:
-        console.log("FETCH FAILED")
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
         case LOGIN_START:
-            console.log("LOGIN BEGIN", state.loading)
             return {
                 ...state, 
                 loading: true,
@@ -63,11 +59,9 @@ export const userReducer = (state = initialState, action) => {
                 currentUser: null
             }
         case LOGIN_SUCCESS:
-            console.log("LOGIN COMPLETE")
             return {
                 ...state,
                 loading: false,
-                currentUser: action.payload
             }
         case LOGIN_FAILURE:
             return {
@@ -95,14 +89,12 @@ export const userReducer = (state = initialState, action) => {
                 loading: false
             }
         case EDITING_START: 
-        console.log('LOADING STARTED')
             return {
                 ...state,
                 loading: true,
                 error: ''
             }
         case EDITING_SUCCESS: 
-        console.log('LOADING COMPLETE')
             return {
                 ...state,
                 loading: false,

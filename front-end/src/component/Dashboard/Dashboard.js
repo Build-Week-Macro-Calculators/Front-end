@@ -8,6 +8,8 @@ import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import { Pie } from "react-chartjs-2"
 
+import { axiosWithAuth } from "../../utils/axiosWithAuth"
+
 const Dashboard = ({ 
     currentUser,
     calorieIntake, 
@@ -47,7 +49,7 @@ const Dashboard = ({
             [e.target.name]: +e.target.value
         })
     }
-console.log(time > 12 ? time - 12 : time)
+
     return (
       <div className = "containerDashboard">
       <HeaderLayout />
@@ -67,11 +69,12 @@ console.log(time > 12 ? time - 12 : time)
                 <div className ="box">
                 <h3>Today's Calorie Goal</h3>
                 {/* If you DID NOT click the edit button, render a div with the user info
-                otherwise, render a form to allow user to change weight + goal */}
+                OTHERWISE, render a form to allow user to change weight + goal */}
                 { !isEditing && !loading
                     ?   <div className="calorieGoal">
                             <h1><span>{calorieIntake}</span> Calories</h1>
                             <div className="goal-info">
+                                {/* Conditionally rendering user info based on their current weight and goal */}
                                 <p>Recent Weigh-In: <span>{currentUser.weight} lbs.</span></p>
                                     {currentUser.goal < 0 
                                     ? <p>You're consuming a <span>{currentUser.goal * 100}%</span> calorie deficit.</p>
@@ -155,9 +158,7 @@ console.log(time > 12 ? time - 12 : time)
                 </div>
             </div>
         </div>
-        
       </div>
-
   );
 };
 
