@@ -6,6 +6,7 @@ import HeaderLayout from "../HeaderLayout/HeaderLayout"
 import ReactMinimalPieChart from "react-minimal-pie-chart";
 import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import { Pie } from "react-chartjs-2"
 
 const Dashboard = ({ 
     currentUser,
@@ -51,6 +52,7 @@ console.log(time > 12 ? time - 12 : time)
       <div className = "containerDashboard">
       <HeaderLayout />
         <div className = "mainBox">
+        {/* Greeting to user depending on time of day */}
         <div className="headerDashboard">
             <h1>{time >= 0 && time < 12 
                 ? 'Good Morning' 
@@ -59,9 +61,13 @@ console.log(time > 12 ? time - 12 : time)
                 : 'Good Evening'
             }, {currentUser.username}!</h1>
         </div>
+        {/* Main content of dashboard */}
         <div className="data-display-containers">
+                {/* Box displays displays current info OR form to edit weight + goal */}
                 <div className ="box">
                 <h3>Today's Calorie Goal</h3>
+                {/* If you DID NOT click the edit button, render a div with the user info
+                otherwise, render a form to allow user to change weight + goal */}
                 { !isEditing && !loading
                     ?   <div className="calorieGoal">
                             <h1><span>{calorieIntake}</span> Calories</h1>
@@ -106,51 +112,38 @@ console.log(time > 12 ? time - 12 : time)
                 </div>
                 <div className = "pie-chart">
                     <h3>Macro Nutrient Breakdown</h3>
+                    {/* If page is not loading, show pie chart, otherwise show react-spinning-loader */}
                     { !loading 
-                        ?   <><ReactMinimalPieChart
-                                animate
-                                animationDuration={500}
-                                animationEasing="ease-in-out"
-                                cx={50}
-                                cy={50}
-                                data={[
-                                    {
-                                    color: '#f79d65',
-                                    title: 'Carbs',
-                                    value: carbs
-                                    },
-                                    {
-                                    color: '#f4845f',
-                                    title: 'Protein',
-                                    value: protein
-                                    },
-                                    {
-                                    color: '#f27059',
-                                    title: 'Fat',
-                                    value: fat
-                                    }
-                                ]}
-                                label={true}
-                                labelStyle={{
-                                    fontSize: '8px',
-                                    fill: 'rgba(255, 255, 255, .9)'
+                        ?   <><Pie
+                                data={{
+                                    labels: [
+                                        `Fat (g)`,
+                                        `Carbs (g)`,
+                                        `Protein (g)`,
+                                    ],
+                                    datasets: [{
+                                        data: [fat, carbs, protein],
+                                        backgroundColor: ['#f4845f', '#f7b267', '#f25c54'],
+                                        borderColor: 'rgba(250, 250, 250, .6)',
+                                    }]
                                 }}
-                                labelPosition={50}
-                                lengthAngle={360}
-                                lineWidth={100}
-                                onClick={undefined}
-                                onMouseOut={undefined}
-                                onMouseOver={undefined}
-                                paddingAngle={0}
-                                radius={30}
-                                ratio={1}
-                                rounded={false}
-                                startAngle={0}
+                                width={100}
+                                height={45}
+                                options={{
+                                    legend: {
+                                        borderColor: 'white',
+                                        labels: {
+                                            fontColor: 'rgba(250, 250, 250, .8)',
+                                            boxWidth: 20,
+                                            padding: 20
+                                        }
+                                    },
+                                }}
                             />
                             <p>
-                                <span style={{color: "#f4845f"}}> Protein: </span> {protein}g  
-                                <span style={{color: "#f7b267"}}> Carbs: </span> {carbs}g  
                                 <span style={{color: "#f25c54"}}> Fat: </span> {fat}g 
+                                <span style={{color: "#f7b267"}}> Carbs: </span> {carbs}g  
+                                <span style={{color: "#f4845f"}}> Protein: </span> {protein}g
                             </p></>
                         : <Loader
                             type="TailSpin"

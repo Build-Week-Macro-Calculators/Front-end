@@ -92,6 +92,7 @@ const Login= ({ values, loading })=> {
               variant="contained"
               color="primary"
               className={classes.submit}
+              disabled={loading}
               >
               {!loading 
                 ? 'Sign Up' 

@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignUp = ({ values, loading }) => {
+const SignUp = ({ values, loading, error, isSubmitting }) => {
   const classes = useStyles();
   return (
     <Grid container component="main" className={classes.root}>
@@ -197,12 +197,12 @@ const SignUp = ({ values, loading }) => {
                   <MenuItem value={false}>Female</MenuItem>
                 </Field>
             </MuiPickersUtilsProvider>
-           
             <Button
               type="submit"
               fullWidth
               variant="contained"
               className={classes.submit}
+              disabled={loading}
               >
               {!loading 
                 ? 'Sign Up' 
@@ -256,6 +256,7 @@ const FormikSignUp = withFormik({
   //You can use this to see the values
   handleSubmit(values, {resetForm, ...rest}) {
     rest.props.register(values);
+    resetForm();
   }
   
 })(SignUp);
@@ -263,7 +264,8 @@ const FormikSignUp = withFormik({
 const mapStateToProps = state => {
   console.log(state)
   return {
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
   }
 }
 

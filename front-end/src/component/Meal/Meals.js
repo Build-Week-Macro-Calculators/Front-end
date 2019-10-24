@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Button } from "@material-ui/core";
 import { connect } from "react-redux"
+import { Bar } from "react-chartjs-2"
 
 import './Meal.scss'
 import HeaderLayout from "../HeaderLayout/HeaderLayout"
@@ -26,13 +27,13 @@ const Meals = ({
   }) => {
 
   const classes = useStyles();
+  const [snackAmount, setSnackAmount] = useState(false)
   const [mealAmount, setMealAmount] = useState({
     meals: 3,
     threeMeals: true,
     fourMeals: false,
     snackAndMeals: false
   })
-  const [snackAmount, setSnackAmount] = useState(false)
 
   useEffect(() => {
     fetchProfile();
@@ -46,6 +47,7 @@ const Meals = ({
             <Grid item xs>
               <h3>Today I am eating...</h3>
             </Grid>
+            {/* Contains buttons to select how many meals you are eating */}
             <div className='button-container'>
               <Grid>
                 <Button
@@ -116,24 +118,101 @@ const Meals = ({
               spacing={2}
               className='info-container'
             >
+              {/* Meal nutrition breakdown + Bar graph */}
               <div className='info-breakdown'>
                   <h4>Meal Breakdown</h4>
-                  <div className="macronutrients">
-                    <div className='macro-div protein-bubble'><p>{Math.floor(protein / mealAmount.meals)}g <br /> Protein</p></div>
-                    <div className='macro-div carb-bubble'><p>{Math.floor(carbs / mealAmount.meals)}g <br /> Carbs</p></div>
-                    <div className='macro-div fat-bubble'><p>{Math.floor(fat / mealAmount.meals)}g <br /> Fat</p></div>
-                  </div>
+                  <Bar
+                    data={{
+                      labels: [
+                        `Protein: ${Math.floor(protein / mealAmount.meals)}g`,
+                        `Carbs: ${Math.floor(carbs / mealAmount.meals)}g`,
+                        `Fat: ${Math.floor(fat / mealAmount.meals)}g`],
+                      datasets: [
+                        {
+                          data: [
+                            Math.floor(protein / mealAmount.meals), 
+                            Math.floor(carbs / mealAmount.meals), 
+                            Math.floor(fat / mealAmount.meals)
+                          ],
+                          backgroundColor: [
+                            '#f4845f',
+                            '#f7b267',
+                            '#f25c54'
+                          ]
+                        }
+                      ]
+                    }}
+                    width={100}
+                    height={45}
+                    options={{
+                      scales: {
+                        yAxes: [{
+                          ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            max: 100
+                          }
+                        }]
+                      },
+                      legend: {
+                        display: false
+                      },
+                      title: {
+                        text: `Macronutrients for ${snackAmount ? '3' : mealAmount.meals} meals`,
+                        display: 'top'
+                      }
+                    }}
+                  />
+               
                     <h3>{Math.round(calorieIntake / mealAmount.meals)} calories per meal</h3>
               </div>
               
+              {/* Snack nutrition breakdown + Bar graph */}              
               <div className='info-breakdown'>
-                  <h4>{snackAmount ? 'Snack Breakdown' : 'No Snacks Today!'}</h4>
-                  <div className="macronutrients">
-                    <div className='macro-div protein-bubble'><p>{!snackAmount ? 0 : Math.floor((protein / mealAmount.meals) / 2)}g <br /> Protein</p></div>
-                    <div className='macro-div carb-bubble'><p>{!snackAmount ? 0 : Math.floor((carbs / mealAmount.meals) / 2)}g <br /> Carbs</p></div>
-                    <div className='macro-div fat-bubble'><p>{!snackAmount ? 0 : Math.floor((fat / mealAmount.meals) / 2)}g <br /> Fat</p></div>
-                  </div>
-                    <h3>{!snackAmount ? 0 : Math.floor(calorieIntake / 8)} calories per snack</h3>
+                <h4>{snackAmount ? 'Snack Breakdown' : 'No Snacks Today!'}</h4>
+                <Bar
+                  data={{
+                    labels: [
+                      `Protein: ${!snackAmount ? 0 : Math.floor((protein / mealAmount.meals) / 2)}g`,
+                      `Carbs: ${!snackAmount ? 0 : Math.floor((carbs / mealAmount.meals) / 2)}g`,
+                      `Fat: ${!snackAmount ? 0 : Math.floor((fat / mealAmount.meals) / 2)}g`],
+                    datasets: [
+                      {
+                        data: [
+                          !snackAmount ? 0 : Math.floor((protein / mealAmount.meals) / 2), 
+                          !snackAmount ? 0 : Math.floor((carbs / mealAmount.meals) / 2), 
+                          !snackAmount ? 0 : Math.floor((fat / mealAmount.meals) / 2)
+                        ],
+                        backgroundColor: [
+                          '#f4845f',
+                          '#f7b267',
+                          '#f25c54'
+                        ]
+                      }
+                    ]
+                  }}
+                  width={100}
+                  height={45}
+                  options={{
+                    scales: {
+                        yAxes: [{
+                          ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            max: 100
+                          },
+                        }]
+                      },
+                    legend: {
+                      display: false
+                    },
+                    title: {
+                      text: `Macronutrients for ${snackAmount ? '2' : '0'} snacks`,
+                      display: 'top'
+                    }
+                  }}
+                 />
+                <h3>{!snackAmount ? 0 : Math.floor(calorieIntake / 8)} calories per snack</h3>
               </div>
             </Grid>
         </div>
@@ -153,3 +232,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {fetchProfile})(Meals)
+
