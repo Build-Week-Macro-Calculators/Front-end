@@ -37,6 +37,7 @@ const Dashboard = ({
             ...newInfo,
             weight: currentUser.weight
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentUser.weight, currentUser.goal, fetchProfile])
 
 
