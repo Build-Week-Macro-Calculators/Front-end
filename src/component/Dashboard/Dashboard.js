@@ -32,6 +32,7 @@ const Dashboard = ({
     }
 
     useEffect(() => {
+        console.log("FETCH IS RUNNING")
         fetchProfile();
         setNewInfo({
             ...newInfo,
@@ -132,7 +133,6 @@ const Dashboard = ({
                                 height={45}
                                 options={{
                                     legend: {
-                                        borderColor: 'white',
                                         labels: {
                                             fontColor: 'rgba(250, 250, 250, .8)',
                                             boxWidth: 20,
